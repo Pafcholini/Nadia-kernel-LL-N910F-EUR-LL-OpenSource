@@ -19,10 +19,18 @@
 
 #ifdef CONFIG_DOLBY_DS2
 /* DOLBY DOLBY GUIDS */
+<<<<<<< HEAD
 #define DS2_MODULE_ID			0x00010775
 
 #define DS2_DSP_SUPPORTED_ENDP_DEVICE		17
 #define DS2_DEVICES_ALL				22
+=======
+#define DS2_ADM_COPP_TOPOLOGY_ID	0x0001033C
+#define DS2_MODULE_ID			0x00010775
+
+#define NUM_DS2_ENDP_DEVICE			17
+#define ALL_DEVICES				22
+>>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 
 enum {
 
@@ -31,7 +39,21 @@ enum {
 	DAP_CMD_USE_CACHE_FOR_INIT = 2,
 	DAP_CMD_SET_BYPASS         = 3,
 	DAP_CMD_SET_ACTIVE_DEVICE  = 4,
+<<<<<<< HEAD
 	DAP_CMD_SET_BYPASS_TYPE    = 5,
+=======
+};
+
+/* DOLBY device definitions end */
+enum {
+	DOLBY_OFF_CACHE = 0,
+	DOLBY_SPEKAER_CACHE,
+	DOLBY_HEADPHONE_CACHE,
+	DOLBY_HDMI_CACHE,
+	DOLBY_WFD_CACHE,
+	DOLBY_FM_CACHE,
+	DOLBY_MAX_CACHE,
+>>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 };
 
 #define DOLBY_PARAM_INT_ENDP_LENGTH             1
@@ -41,7 +63,10 @@ enum {
 #define MAX_DS2_CTRL_PARAMS			4
 #define ALL_DS2_PARAMS				(MAX_DS2_PARAMS + \
 							MAX_DS2_CTRL_PARAMS)
+<<<<<<< HEAD
 #define TOTAL_LENGTH_DS2_PARAM (TOTAL_LENGTH_DOLBY_PARAM + 1)
+=======
+>>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 
 int msm_ds2_dap_update_port_parameters(struct snd_hwdep *hw,  struct file *file,
 				       bool open);
@@ -50,11 +75,16 @@ int msm_ds2_dap_ioctl(struct snd_hwdep *hw, struct file *file,
 int msm_ds2_dap_init(int port_id, int channels,
 		     bool is_custom_stereo_on);
 void msm_ds2_dap_deinit(int port_id);
+<<<<<<< HEAD
 int msm_ds2_dap_set_custom_stereo_onoff(int port_id,
+=======
+int msm_ds2_dap_set_custom_stereo_onoff(int dev_map_idx,
+>>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 					bool is_custom_stereo_enabled);
 /* Dolby DOLBY end */
 #else
 
+<<<<<<< HEAD
 static inline void msm_ds2_dap_update_port_parameters(struct snd_hwdep *hw,
 					       struct file *file,
 					       bool open)
@@ -68,14 +98,34 @@ static inline int msm_ds2_dap_ioctl(struct snd_hwdep *hw, struct file *file,
 	return 0;
 }
 static inline int msm_ds2_dap_init(int port_id, int channels,
+=======
+void msm_ds2_dap_update_port_parameters(struct snd_hwdep *hw, struct file *file,
+					bool open)
+{
+	return 0;
+}
+
+int msm_ds2_dap_ioctl(struct snd_hwdep *hw, struct file *file, u32 cmd,
+		      void *arg)
+{
+	return 0;
+}
+int msm_ds2_dap_init(int port_id, int channels,
+>>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		     bool is_custom_stereo_on)
 {
 	return 0;
 }
 
+<<<<<<< HEAD
 static inline void msm_ds2_dap_deinit(int port_id) { }
 
 static inline int msm_ds2_dap_set_custom_stereo_onoff(int port_id,
+=======
+void msm_ds2_dap_deinit(int port_id) { }
+
+int ds2_dap_set_custom_stereo_onoff(int dev_map_idx,
+>>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 				    bool is_custom_stereo_enabled)
 {
 	return 0;

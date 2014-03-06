@@ -115,6 +115,7 @@ static void msm_pcm_routing_cfg_pp(int port_id, int topology, int channels)
 		break;
 	case DOLBY_ADM_COPP_TOPOLOGY_ID:
 		if (is_ds2_on) {
+<<<<<<< HEAD
 			pr_debug("%s: DS2_ADM_COPP_TOPOLOGY\n", __func__);
 			rc = msm_ds2_dap_init(port_id, channels,
 				is_custom_stereo_on);
@@ -128,6 +129,18 @@ static void msm_pcm_routing_cfg_pp(int port_id, int topology, int channels)
 			if (rc < 0)
 				pr_err("%s: DS1 topo_id 0x%x, port %d, rc %d\n",
 					__func__, topology, port_id, rc);
+=======
+			pr_debug("%s: DS2_ADM_COPP_TOPOLOGY_ID\n", __func__);
+			if (msm_ds2_dap_init(port_id, channels,
+					     is_custom_stereo_on) < 0)
+				pr_err("%s: err DS2 dap\n", __func__);
+		} else {
+			pr_debug("%s: DOLBY_ADM_COPP_TOPOLOGY_ID\n", __func__);
+			if (msm_dolby_dap_init(port_id, channels,
+					       is_custom_stereo_on)
+					< 0)
+				pr_err("%s: err ds1 dolby dap\n", __func__);
+>>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		}
 		break;
 	default:
@@ -4813,12 +4826,17 @@ static int msm_routing_probe(struct snd_soc_platform *platform)
 	msm_dolby_dap_add_controls(platform);
 
 	snd_soc_add_platform_controls(platform,
+<<<<<<< HEAD
 				      use_ds1_or_ds2_controls,
 				      ARRAY_SIZE(use_ds1_or_ds2_controls));
 
 	snd_soc_add_platform_controls(platform,
 				device_pp_params_mixer_controls,
 				ARRAY_SIZE(device_pp_params_mixer_controls));
+=======
+				use_ds1_or_ds2_controls,
+			ARRAY_SIZE(use_ds1_or_ds2_controls));
+>>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 
 	return 0;
 }

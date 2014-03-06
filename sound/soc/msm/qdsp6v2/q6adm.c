@@ -1359,9 +1359,15 @@ int adm_open(int port_id, int path, int rate, int channel_mode, int topology,
 	int index;
 	int tmp_port = q6audio_get_port_id(port_id);
 
+<<<<<<< HEAD
 	pr_debug("%s: port 0x%x path:%d rate:%d mode:%d perf_mode:%d topo_id 0x%x\n",
 		 __func__,
 		port_id, path, rate, channel_mode, perf_mode, topology);
+=======
+	pr_debug("%s:port %#x path:%d rate:%d mode:%d perf_mode:%d,topo_id %d\n",
+		 __func__, port_id, path, rate, channel_mode,
+		perf_mode, topology);
+>>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 
 	port_id = q6audio_convert_virtual_to_portid(port_id);
 
