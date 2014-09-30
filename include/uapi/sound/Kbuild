@@ -14,6 +14,9 @@ header-y += lsm_params.h
 header-y += audio_slimslave.h
 header-y += voice_params.h
 header-y += audio_effects.h
+<<<<<<< HEAD
 header-y += devdep_params.h
 header-y += voice_svc.h
+=======
+>>>>>>> 966191d... ASoC: wcd9xxx: use hwdep node for codec calibration
 header-y += msmcal-hwdep.h

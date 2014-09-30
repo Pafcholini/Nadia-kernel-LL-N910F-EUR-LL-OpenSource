@@ -243,7 +243,10 @@ config SND_SOC_APQ8084
 	select DTS_SRS_TM
 	select QTI_PP
 	select SND_SOC_CPE
+<<<<<<< HEAD
 	select DOLBY_DS2
+=======
+>>>>>>> 966191d... ASoC: wcd9xxx: use hwdep node for codec calibration
 	select SND_HWDEP
 	help
 	 To add support for SoC audio on APQ8084.
