@@ -392,6 +392,10 @@ static void cpufreq_interactive_timer(unsigned long data)
 	cpu_load = loadadjfreq / pcpu->policy->cur;
 	boosted = boost_val || now < boostpulse_endtime;
 
+<<<<<<< HEAD
+=======
+	cpufreq_notify_utilization(pcpu->policy, cpu_load);
+>>>>>>> d35a688... Add cpufreq_notify_utilization
 
 	if (cpu_load >= go_hispeed_load || boosted) {
 		if (pcpu->policy->cur < hispeed_freq) {
