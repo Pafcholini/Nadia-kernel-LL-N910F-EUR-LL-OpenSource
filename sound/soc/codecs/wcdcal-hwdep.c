@@ -12,10 +12,6 @@
  *
  */
 #include <linux/slab.h>
-<<<<<<< HEAD
-=======
-#include <linux/module.h>
->>>>>>> 966191d... ASoC: wcd9xxx: use hwdep node for codec calibration
 #include <linux/ioctl.h>
 #include <linux/bitops.h>
 #include <sound/hwdep.h>
@@ -24,11 +20,7 @@
 #include "wcdcal-hwdep.h"
 
 const int cal_size_info[WCD9XXX_MAX_CAL] = {
-<<<<<<< HEAD
 	[WCD9XXX_ANC_CAL] = 8192,
-=======
-	[WCD9XXX_ANC_CAL] = 4096,
->>>>>>> 966191d... ASoC: wcd9xxx: use hwdep node for codec calibration
 	[WCD9XXX_MBHC_CAL] = 4096,
 	[WCD9XXX_MAD_CAL] = 4096,
 };
