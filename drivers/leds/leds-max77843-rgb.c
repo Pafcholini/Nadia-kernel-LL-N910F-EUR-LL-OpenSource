@@ -114,6 +114,7 @@ struct max77843_rgb {
 	unsigned int delay_off_times_ms;
 };
 
+
 extern int get_lcd_id(void);
 static unsigned int lcdtype_color;
 
@@ -135,7 +136,6 @@ static struct leds_control {
 };
 #endif
 
->>>>>>> 5bd9a57... add Led Control
 #if defined (CONFIG_SEC_FACTORY)
 #if defined(CONFIG_SEC_TRLTE_PROJECT) || defined(CONFIG_SEC_TBLTE_PROJECT)
 static int jig_val;
@@ -419,7 +419,7 @@ static ssize_t store_max77843_rgb_lowpower(struct device *dev,
 	}
 
 	led_lowpower_mode = led_lowpower;
-<<<<<<< HEAD
+
 	if (led_lowpower_mode == 1)
 		led_dynamic_current = BASE_LOW_POWER_CURRENT;
 	else {
@@ -428,7 +428,7 @@ static ssize_t store_max77843_rgb_lowpower(struct device *dev,
 		else
 			led_dynamic_current = BASE_DYNAMIC_LED_CURRENT;
 	}
-=======
+
 //	if (led_lowpower_mode == 1)
 //		led_dynamic_current = BASE_LOW_POWER_CURRENT;
 //	else
@@ -438,7 +438,6 @@ static ssize_t store_max77843_rgb_lowpower(struct device *dev,
     max77843_rgb_set_state(&max77843_rgb->led[RED], led_dynamic_current, LED_BLINK);
     max77843_rgb_set_state(&max77843_rgb->led[GREEN], led_dynamic_current, LED_BLINK);
     max77843_rgb_set_state(&max77843_rgb->led[BLUE], led_dynamic_current, LED_BLINK);
->>>>>>> 5bd9a57... add Led Control
 	pr_info("led_lowpower mode set to %i, led_dynamic_current set to %d\n", led_lowpower, led_dynamic_current);
 	dev_dbg(dev, "led_lowpower mode set to %i\n", led_lowpower);
 
@@ -504,17 +503,16 @@ static ssize_t store_max77843_rgb_pattern(struct device *dev,
 		max77843_rgb_set_state(&max77843_rgb->led[RED], led_dynamic_current, LED_BLINK);
 		break;
 	case MISSED_NOTI:
-<<<<<<< HEAD
+
 		max77843_rgb_blink(dev, 500, 5000);
 			max77843_rgb_set_state(&max77843_rgb->led[BLUE], led_dynamic_current, LED_BLINK);
-=======
+
         max77843_rgb_ramp(dev, leds_control.noti_ramp_up, leds_control.noti_ramp_down);
 		max77843_rgb_blink(dev, leds_control.noti_delay_on, leds_control.noti_delay_off);
 		if(led_lowpower_mode == 1)
 			max77843_rgb_set_state(&max77843_rgb->led[BLUE], 0x0a, LED_BLINK);
 		else
 			max77843_rgb_set_state(&max77843_rgb->led[BLUE], 0x32, LED_BLINK);
->>>>>>> 5bd9a57... add Led Control
 		break;
 	case LOW_BATTERY:
 		max77843_rgb_blink(dev, 500, 5000);
