@@ -73,7 +73,11 @@ int mmc_attach_sd(struct mmc_host *host);
 int mmc_attach_sdio(struct mmc_host *host);
 
 /* Module parameters */
+<<<<<<< HEAD
 extern int use_spi_crc;
+=======
+extern bool use_spi_crc;
+>>>>>>> f7fd4ee... First Commit
 
 /* Debugfs information for hosts and cards */
 void mmc_add_host_debugfs(struct mmc_host *host);

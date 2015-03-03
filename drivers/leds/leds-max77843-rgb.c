@@ -15,7 +15,10 @@
 #include <linux/interrupt.h>
 #include <linux/init.h>
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <linux/sysfs_helpers.h>
+=======
+>>>>>>> f7fd4ee... First Commit
 #include <linux/platform_device.h>
 #include <linux/leds.h>
 #include <linux/err.h>
@@ -114,6 +117,7 @@ struct max77843_rgb {
 	unsigned int delay_off_times_ms;
 };
 
+<<<<<<< HEAD
 
 extern int get_lcd_id(void);
 static unsigned int lcdtype_color;
@@ -136,6 +140,10 @@ static struct leds_control {
 };
 #endif
 
+=======
+extern int get_lcd_id(void);
+static unsigned int lcdtype_color;
+>>>>>>> f7fd4ee... First Commit
 #if defined (CONFIG_SEC_FACTORY)
 #if defined(CONFIG_SEC_TRLTE_PROJECT) || defined(CONFIG_SEC_TBLTE_PROJECT)
 static int jig_val;
@@ -410,7 +418,10 @@ static ssize_t store_max77843_rgb_lowpower(struct device *dev,
 {
 	int ret;
 	u8 led_lowpower;
+<<<<<<< HEAD
     struct max77843_rgb *max77843_rgb = dev_get_drvdata(dev);
+=======
+>>>>>>> f7fd4ee... First Commit
 
 	ret = kstrtou8(buf, 0, &led_lowpower);
 	if (ret != 0) {
@@ -419,7 +430,10 @@ static ssize_t store_max77843_rgb_lowpower(struct device *dev,
 	}
 
 	led_lowpower_mode = led_lowpower;
+<<<<<<< HEAD
 
+=======
+>>>>>>> f7fd4ee... First Commit
 	if (led_lowpower_mode == 1)
 		led_dynamic_current = BASE_LOW_POWER_CURRENT;
 	else {
@@ -428,6 +442,7 @@ static ssize_t store_max77843_rgb_lowpower(struct device *dev,
 		else
 			led_dynamic_current = BASE_DYNAMIC_LED_CURRENT;
 	}
+<<<<<<< HEAD
 
 //	if (led_lowpower_mode == 1)
 //		led_dynamic_current = BASE_LOW_POWER_CURRENT;
@@ -438,6 +453,8 @@ static ssize_t store_max77843_rgb_lowpower(struct device *dev,
     max77843_rgb_set_state(&max77843_rgb->led[RED], led_dynamic_current, LED_BLINK);
     max77843_rgb_set_state(&max77843_rgb->led[GREEN], led_dynamic_current, LED_BLINK);
     max77843_rgb_set_state(&max77843_rgb->led[BLUE], led_dynamic_current, LED_BLINK);
+=======
+>>>>>>> f7fd4ee... First Commit
 	pr_info("led_lowpower mode set to %i, led_dynamic_current set to %d\n", led_lowpower, led_dynamic_current);
 	dev_dbg(dev, "led_lowpower mode set to %i\n", led_lowpower);
 
@@ -448,7 +465,10 @@ static ssize_t store_max77843_rgb_brightness(struct device *dev,
 					const char *buf, size_t count)
 {
 	int ret;
+<<<<<<< HEAD
     u8 max_brightness;
+=======
+>>>>>>> f7fd4ee... First Commit
 	u8 brightness;
 	pr_info("leds-max77843-rgb: %s\n", __func__);
 
@@ -460,8 +480,13 @@ static ssize_t store_max77843_rgb_brightness(struct device *dev,
 
 	led_lowpower_mode = 0;
 
+<<<<<<< HEAD
     max_brightness = (led_lowpower_mode) ? leds_control.current_low : leds_control.current_high;
     brightness = (brightness * max_brightness) / LED_MAX_CURRENT;
+=======
+	if (brightness > LED_MAX_CURRENT)
+		brightness = LED_MAX_CURRENT;
+>>>>>>> f7fd4ee... First Commit
 
 	led_dynamic_current = brightness;
 
@@ -503,6 +528,7 @@ static ssize_t store_max77843_rgb_pattern(struct device *dev,
 		max77843_rgb_set_state(&max77843_rgb->led[RED], led_dynamic_current, LED_BLINK);
 		break;
 	case MISSED_NOTI:
+<<<<<<< HEAD
 
 		max77843_rgb_blink(dev, 500, 5000);
 			max77843_rgb_set_state(&max77843_rgb->led[BLUE], led_dynamic_current, LED_BLINK);
@@ -513,6 +539,10 @@ static ssize_t store_max77843_rgb_pattern(struct device *dev,
 			max77843_rgb_set_state(&max77843_rgb->led[BLUE], 0x0a, LED_BLINK);
 		else
 			max77843_rgb_set_state(&max77843_rgb->led[BLUE], 0x32, LED_BLINK);
+=======
+		max77843_rgb_blink(dev, 500, 5000);
+			max77843_rgb_set_state(&max77843_rgb->led[BLUE], led_dynamic_current, LED_BLINK);
+>>>>>>> f7fd4ee... First Commit
 		break;
 	case LOW_BATTERY:
 		max77843_rgb_blink(dev, 500, 5000);
@@ -757,6 +787,7 @@ static DEVICE_ATTR(delay_off, 0640, led_delay_off_show, led_delay_off_store);
 static DEVICE_ATTR(blink, 0640, NULL, led_blink_store);
 
 #ifdef SEC_LED_SPECIFIC
+<<<<<<< HEAD
 static ssize_t show_leds_property(struct device *dev,
                                   struct device_attribute *attr, char *buf);
 
@@ -838,6 +869,8 @@ static ssize_t store_leds_property(struct device *dev,
     
     return len;
 }
+=======
+>>>>>>> f7fd4ee... First Commit
 /* below nodes is SAMSUNG specific nodes */
 static DEVICE_ATTR(led_r, 0660, NULL, store_led_r);
 static DEVICE_ATTR(led_g, 0660, NULL, store_led_g);
@@ -945,10 +978,13 @@ static int max77843_rgb_probe(struct platform_device *pdev)
 		goto alloc_err_flash;
 	}
 
+<<<<<<< HEAD
     for(i = 0; i < ARRAY_SIZE(leds_control_attrs); i++) {
         ret = sysfs_create_file(&led_dev->kobj, &leds_control_attrs[i].attr);
     }
 
+=======
+>>>>>>> f7fd4ee... First Commit
 	platform_set_drvdata(pdev, max77843_rgb);
 
 #if defined (CONFIG_SEC_FACTORY)

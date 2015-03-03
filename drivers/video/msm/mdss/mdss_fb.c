@@ -2449,6 +2449,7 @@ static int __mdss_fb_display_thread(void *data)
 
 	while (1) {
 		ATRACE_BEGIN(__func__);
+<<<<<<< HEAD
 		ret = wait_event_interruptible(mfd->commit_wait_q,
 				(atomic_read(&mfd->commits_pending) ||
 				 kthread_should_stop()));
@@ -2458,6 +2459,12 @@ static int __mdss_fb_display_thread(void *data)
 			continue;
 		}
 
+=======
+		wait_event(mfd->commit_wait_q,
+				(atomic_read(&mfd->commits_pending) ||
+				 kthread_should_stop()));
+
+>>>>>>> f7fd4ee... First Commit
 		if (kthread_should_stop())
 			break;
 

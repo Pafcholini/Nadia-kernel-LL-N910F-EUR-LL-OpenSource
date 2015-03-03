@@ -83,6 +83,7 @@ static struct mipi_samsung_driver_data *mdnie_msd;
 #define INPUT_PAYLOAD1(x) PAYLOAD1.payload = x
 #define INPUT_PAYLOAD2(x) PAYLOAD2.payload = x
 
+<<<<<<< HEAD
 #if defined(CONFIG_MDNIE_LITE_CONTROL)
 int hijack = HIJACK_DISABLED; /* By default, do not enable hijacking */
 int curve = 0;
@@ -92,6 +93,8 @@ int black_g = 0;
 int black_b = 0;
 #endif
 
+=======
+>>>>>>> f7fd4ee... First Commit
 int play_speed_1_5;
 
 struct dsi_buf dsi_mdnie_tx_buf;
@@ -146,6 +149,7 @@ const char scenario_name[MAX_mDNIe_MODE][16] = {
 };
 
 const char background_name[MAX_BACKGROUND_MODE][10] = {
+<<<<<<< HEAD
 	"0",
 #if defined(CONFIG_MDNIE_LITE_CONTROL)
     "CONTROL",
@@ -157,6 +161,13 @@ const char background_name[MAX_BACKGROUND_MODE][10] = {
 #endif
 	"3",
 	"4",
+=======
+	"DYNAMIC",
+	"STANDARD",
+	"NATURAL",
+	"MOVIE",
+	"AUTO",
+>>>>>>> f7fd4ee... First Commit
 };
 
 const char outdoor_name[MAX_OUTDOOR_MODE][20] = {
@@ -229,6 +240,7 @@ void free_tun_cmd(void)
 	memset(tune_head, 0, MDNIE_TUNE_HEAD_SIZE);
 }
 
+<<<<<<< HEAD
 #if defined(CONFIG_MDNIE_LITE_CONTROL)
 void update_mdnie_curve(void)
 {
@@ -299,6 +311,8 @@ void update_mdnie_mode(void)
 }
 #endif
 
+=======
+>>>>>>> f7fd4ee... First Commit
 void sending_tuning_cmd(void)
 {
 	struct msm_fb_data_type *mfd;
@@ -367,6 +381,7 @@ void mDNIe_Set_Mode(void)
 
 	play_speed_1_5 = 0;
 
+<<<<<<< HEAD
 #ifdef CONFIG_MDNIE_LITE_CONTROL
     if (hijack == HIJACK_ENABLED) {
         DPRINT(" = CONTROL MODE =\n");
@@ -375,6 +390,8 @@ void mDNIe_Set_Mode(void)
     } else 
 #endif
 
+=======
+>>>>>>> f7fd4ee... First Commit
 	if (mdnie_tun_state.accessibility) {
 		DPRINT(" = ACCESSIBILITY MODE =\n");
 		INPUT_PAYLOAD1(blind_tune_value[mdnie_tun_state.accessibility][0]);
@@ -470,10 +487,17 @@ void is_play_speed_1_5(int enable)
 static ssize_t mode_show(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
+<<<<<<< HEAD
 	DPRINT("%s\n",
 		background_name[mdnie_tun_state.background]);
 
 	return snprintf(buf, 256, "%s\n",
+=======
+	DPRINT("Current Background Mode : %s\n",
+		background_name[mdnie_tun_state.background]);
+
+	return snprintf(buf, 256, "Current Background Mode : %s\n",
+>>>>>>> f7fd4ee... First Commit
 		background_name[mdnie_tun_state.background]);
 }
 
@@ -506,7 +530,11 @@ static ssize_t mode_store(struct device *dev,
 	return size;
 }
 
+<<<<<<< HEAD
 static DEVICE_ATTR(mode, 0666, mode_show, mode_store);
+=======
+static DEVICE_ATTR(mode, 0664, mode_show, mode_store);
+>>>>>>> f7fd4ee... First Commit
 
 static ssize_t scenario_show(struct device *dev,
 					 struct device_attribute *attr,
@@ -556,6 +584,7 @@ static ssize_t scenario_store(struct device *dev,
 	}
 	return size;
 }
+<<<<<<< HEAD
 
 #if defined(CONFIG_MDNIE_LITE_CONTROL)
 /* hijack */
@@ -1240,6 +1269,9 @@ static DEVICE_ATTR(white_blue, 0666, white_blue_show, white_blue_store);
 #endif
 
 static DEVICE_ATTR(scenario, 0666, scenario_show,
+=======
+static DEVICE_ATTR(scenario, 0664, scenario_show,
+>>>>>>> f7fd4ee... First Commit
 		   scenario_store);
 
 static ssize_t mdnieset_user_select_file_cmd_show(struct device *dev,
@@ -1267,7 +1299,11 @@ static ssize_t mdnieset_user_select_file_cmd_store(struct device *dev,
 	return size;
 }
 
+<<<<<<< HEAD
 static DEVICE_ATTR(mdnieset_user_select_file_cmd, 0666,
+=======
+static DEVICE_ATTR(mdnieset_user_select_file_cmd, 0664,
+>>>>>>> f7fd4ee... First Commit
 		   mdnieset_user_select_file_cmd_show,
 		   mdnieset_user_select_file_cmd_store);
 
@@ -1306,7 +1342,11 @@ static ssize_t mdnieset_init_file_cmd_store(struct device *dev,
 	return size;
 }
 
+<<<<<<< HEAD
 static DEVICE_ATTR(mdnieset_init_file_cmd, 0666, mdnieset_init_file_cmd_show,
+=======
+static DEVICE_ATTR(mdnieset_init_file_cmd, 0664, mdnieset_init_file_cmd_show,
+>>>>>>> f7fd4ee... First Commit
 		   mdnieset_init_file_cmd_store);
 
 static ssize_t outdoor_show(struct device *dev,
@@ -1352,7 +1392,11 @@ static ssize_t outdoor_store(struct device *dev,
 	return size;
 }
 
+<<<<<<< HEAD
 static DEVICE_ATTR(outdoor, 0666, outdoor_show, outdoor_store);
+=======
+static DEVICE_ATTR(outdoor, 0664, outdoor_show, outdoor_store);
+>>>>>>> f7fd4ee... First Commit
 
 #if 0 // accessibility
 static ssize_t negative_show(struct device *dev,
@@ -1381,7 +1425,11 @@ static ssize_t negative_store(struct device *dev,
 
 	return size;
 }
+<<<<<<< HEAD
 static DEVICE_ATTR(negative, 0666,
+=======
+static DEVICE_ATTR(negative, 0664,
+>>>>>>> f7fd4ee... First Commit
 		   negative_show,
 		   negative_store);
 
@@ -1414,7 +1462,11 @@ static ssize_t playspeed_store(struct device *dev,
 	is_play_speed_1_5(value);
 	return size;
 }
+<<<<<<< HEAD
 static DEVICE_ATTR(playspeed, 0666,
+=======
+static DEVICE_ATTR(playspeed, 0664,
+>>>>>>> f7fd4ee... First Commit
 			playspeed_show,
 			playspeed_store);
 
@@ -1484,7 +1536,11 @@ static ssize_t accessibility_store(struct device *dev,
 	return size;
 }
 
+<<<<<<< HEAD
 static DEVICE_ATTR(accessibility, 0666,
+=======
+static DEVICE_ATTR(accessibility, 0664,
+>>>>>>> f7fd4ee... First Commit
 			accessibility_show,
 			accessibility_store);
 
@@ -1571,6 +1627,7 @@ static ssize_t sensorRGB_store(struct device *dev,
 
 	return size;
 }
+<<<<<<< HEAD
 static DEVICE_ATTR(sensorRGB, 0666, sensorRGB_show, sensorRGB_store);
 #endif
 
@@ -1798,6 +1855,10 @@ static DEVICE_ATTR(control_yellow, 0666, yellow_show, yellow_store);
 static DEVICE_ATTR(control_white, 0666, white_show, white_store);
 static DEVICE_ATTR(control_black, 0666, black_show, black_store);
 static DEVICE_ATTR(control_version, 0444, version_show, NULL);
+=======
+
+static DEVICE_ATTR(sensorRGB, 0664, sensorRGB_show, sensorRGB_store);
+>>>>>>> f7fd4ee... First Commit
 #endif
 
 static struct class *mdnie_class;
@@ -1879,6 +1940,7 @@ void init_mdnie_class(void)
 			dev_attr_sensorRGB.attr.name);
 #endif
 
+<<<<<<< HEAD
 #if defined(CONFIG_MDNIE_LITE_CONTROL)
     device_create_file(tune_mdnie_dev, &dev_attr_hijack);
     device_create_file(tune_mdnie_dev, &dev_attr_curve);
@@ -1929,6 +1991,8 @@ void init_mdnie_class(void)
     device_create_file(tune_mdnie_dev, &dev_attr_control_version);
 #endif
     
+=======
+>>>>>>> f7fd4ee... First Commit
 	mdnie_tun_state.mdnie_enable = true;
 
 	DPRINT("end!\n");

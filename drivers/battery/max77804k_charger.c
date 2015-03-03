@@ -14,8 +14,11 @@
 #include <linux/mfd/max77804k-private.h>
 #include <linux/of_gpio.h>
 #include <linux/battery/charger/max77804k_charger.h>
+<<<<<<< HEAD
 #include <linux/fastchg.h>
 
+=======
+>>>>>>> f7fd4ee... First Commit
 #ifdef CONFIG_USB_HOST_NOTIFY
 #include <linux/host_notify.h>
 #endif
@@ -859,7 +862,10 @@ static int sec_chg_set_property(struct power_supply *psy,
 	int set_charging_current, set_charging_current_max;
 	const int usb_charging_current = charger->pdata->charging_current[
 		POWER_SUPPLY_TYPE_USB].fast_charging_current;
+<<<<<<< HEAD
 	int current_now = 0;
+=======
+>>>>>>> f7fd4ee... First Commit
 
 	switch (psp) {
 	case POWER_SUPPLY_PROP_STATUS:
@@ -977,6 +983,7 @@ static int sec_chg_set_property(struct power_supply *psy,
 	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
 		charger->siop_level = val->intval;
 		if (charger->is_charging) {
+<<<<<<< HEAD
 			if (force_fast_charge == FAST_CHARGE_FORCE_AC) {
 				switch(charger->cable_type) {
 					case POWER_SUPPLY_TYPE_USB:
@@ -1018,6 +1025,10 @@ static int sec_chg_set_property(struct power_supply *psy,
 
 			/* decrease the charging current according to siop level */
 			current_now =
+=======
+			/* decrease the charging current according to siop level */
+			int current_now =
+>>>>>>> f7fd4ee... First Commit
 				charger->charging_current * val->intval / 100;
 
 			/* do forced set charging current */
@@ -1052,7 +1063,11 @@ static int sec_chg_set_property(struct power_supply *psy,
 				max77804k_set_input_current(charger,
 					set_charging_current_max);
 			}
+<<<<<<< HEAD
 set_current:
+=======
+
+>>>>>>> f7fd4ee... First Commit
 			max77804k_set_charge_current(charger, current_now);
 		}
 		break;

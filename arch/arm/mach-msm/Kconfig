@@ -974,6 +974,7 @@ config MSM_DEVFREQ_CPUBW
 	  agnostic interface to so that some of the devfreq governors can be
 	  shared across SoCs.
 
+<<<<<<< HEAD
 config MSM_CPUFREQ_LIMIT
  	tristate "MSM CPU frequency limiter"
  	default n
@@ -993,6 +994,8 @@ config CPU_VOLTAGE_CONTROL
 	help
 	  This enables userspace CPU Voltage Control.
 
+=======
+>>>>>>> f7fd4ee... First Commit
 config MSM_AVS_HW
 	bool "Enable Adaptive Voltage Scaling (AVS)"
 	default n

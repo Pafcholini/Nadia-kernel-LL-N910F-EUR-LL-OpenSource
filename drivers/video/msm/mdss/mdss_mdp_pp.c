@@ -23,8 +23,11 @@
 #include <mach/msm_bus.h>
 #include <mach/msm_bus_board.h>
 
+<<<<<<< HEAD
 #include "mdss_mdp_kcal_ctrl.h"
 
+=======
+>>>>>>> f7fd4ee... First Commit
 #if defined(CONFIG_FB_MSM_MDSS_SAMSUNG)
 struct mdp_csc_cfg mdp_csc_convert_wideband = {
 	0,
@@ -356,6 +359,7 @@ struct mdss_pp_res_type {
 	struct pp_hist_col_info *dspp_hist;
 };
 
+<<<<<<< HEAD
 uint32_t igc_Table_RGB[256] = {
 	4080, 4064, 4048, 4032, 4016, 4000, 3984, 3968, 3952, 3936, 3920, 3904,
 	3888, 3872, 3856, 3840, 3824, 3808, 3792, 3776, 3760, 3744, 3728, 3712,
@@ -383,6 +387,8 @@ uint32_t igc_Table_RGB[256] = {
 int igc_c0_c1[256] = {0,};
 int igc_c2[256] = {0,};
 
+=======
+>>>>>>> f7fd4ee... First Commit
 static DEFINE_MUTEX(mdss_pp_mutex);
 static struct mdss_pp_res_type *mdss_pp_res;
 
@@ -467,7 +473,10 @@ static void pp_ad_bypass_config(struct mdss_ad_info *ad,
 				struct mdss_mdp_ctl *ctl, u32 num, u32 *opmode);
 static int mdss_mdp_ad_setup(struct msm_fb_data_type *mfd);
 static void pp_ad_cfg_lut(char __iomem *addr, u32 *data);
+<<<<<<< HEAD
 static struct msm_fb_data_type *mdss_get_mfd_from_index(int index);
+=======
+>>>>>>> f7fd4ee... First Commit
 static int pp_ad_attenuate_bl(u32 bl, u32 *bl_out,
 		struct msm_fb_data_type *mfd);
 static int pp_num_to_side(struct mdss_mdp_ctl *ctl, u32 num);
@@ -2028,6 +2037,7 @@ int mdss_mdp_pp_resume(struct mdss_mdp_ctl *ctl, u32 dspp_num)
 	return 0;
 }
 
+<<<<<<< HEAD
 void mdss_mdp_pp_kcal_update(struct kcal_lut_data *lut_data)
 {
 	u32 copyback = 0;
@@ -2117,6 +2127,8 @@ void mdss_mdp_pp_kcal_invert(struct kcal_lut_data *lut_data)
 	mdss_mdp_igc_lut_config(igc_config, &copyback, copy_from_kernel);
 }
 
+=======
+>>>>>>> f7fd4ee... First Commit
 int mdss_mdp_pp_init(struct device *dev)
 {
 	int i, ret = 0;

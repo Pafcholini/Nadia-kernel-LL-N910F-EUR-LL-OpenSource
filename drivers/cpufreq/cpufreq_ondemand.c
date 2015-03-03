@@ -27,8 +27,11 @@
 #define MIN_FREQUENCY_UP_THRESHOLD		(11)
 #define MAX_FREQUENCY_UP_THRESHOLD		(100)
 
+<<<<<<< HEAD
 extern bool cpuboost_enable;
 
+=======
+>>>>>>> f7fd4ee... First Commit
 static DEFINE_PER_CPU(struct od_cpu_dbs_info_s, od_cpu_dbs_info);
 
 static struct od_ops od_ops;
@@ -172,24 +175,38 @@ static void od_check_cpu(int cpu, unsigned int load)
 		dbs_freq_increase(policy, policy->max);
 	} else {
 		/* Calculate the next frequency proportional to load */
+<<<<<<< HEAD
 		unsigned int freq_next, min_f, max_f;
 
 		min_f = policy->cpuinfo.min_freq;
 		max_f = policy->cpuinfo.max_freq;
 		freq_next = min_f + load * (max_f - min_f) / 100;
+=======
+		unsigned int freq_next;
+		freq_next = load * policy->cpuinfo.max_freq / 100;
+>>>>>>> f7fd4ee... First Commit
 
 		/* No longer fully busy, reset rate_mult */
 		dbs_info->rate_mult = 1;
 
 		if (!od_tuners->powersave_bias) {
 			__cpufreq_driver_target(policy, freq_next,
+<<<<<<< HEAD
 					CPUFREQ_RELATION_C);
+=======
+					CPUFREQ_RELATION_L);
+>>>>>>> f7fd4ee... First Commit
 			return;
 		}
 
 		freq_next = od_ops.powersave_bias_target(policy, freq_next,
+<<<<<<< HEAD
 					CPUFREQ_RELATION_C);
 		__cpufreq_driver_target(policy, freq_next, CPUFREQ_RELATION_C);
+=======
+					CPUFREQ_RELATION_L);
+		__cpufreq_driver_target(policy, freq_next, CPUFREQ_RELATION_L);
+>>>>>>> f7fd4ee... First Commit
 	}
 }
 
@@ -485,8 +502,11 @@ static int od_init(struct dbs_data *dbs_data)
 	u64 idle_time;
 	int cpu;
 
+<<<<<<< HEAD
 	if (cpuboost_enable) cpuboost_enable = false;
 
+=======
+>>>>>>> f7fd4ee... First Commit
 	tuners = kzalloc(sizeof(*tuners), GFP_KERNEL);
 	if (!tuners) {
 		pr_err("%s: kzalloc failed\n", __func__);

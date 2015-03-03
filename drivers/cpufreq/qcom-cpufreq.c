@@ -35,10 +35,13 @@
 #include <trace/events/power.h>
 #include <mach/msm_bus.h>
 
+<<<<<<< HEAD
 #ifdef CONFIG_CPU_VOLTAGE_CONTROL
 static struct cpufreq_frequency_table *dts_freq_table;
 #endif
 
+=======
+>>>>>>> f7fd4ee... First Commit
 #ifdef CONFIG_DEBUG_FS
 #include <linux/debugfs.h>
 #include <linux/seq_file.h>
@@ -596,6 +599,7 @@ static int cpufreq_parse_dt(struct device *dev)
 	freq_table[i].driver_data = i;
 	freq_table[i].frequency = CPUFREQ_TABLE_END;
 
+<<<<<<< HEAD
 #ifdef CONFIG_CPU_VOLTAGE_CONTROL
     dts_freq_table =
     devm_kzalloc(dev, (nf + 1) *
@@ -610,6 +614,8 @@ static int cpufreq_parse_dt(struct device *dev)
     dts_freq_table[i].frequency = CPUFREQ_TABLE_END;
 #endif
 
+=======
+>>>>>>> f7fd4ee... First Commit
 	if (ports)
 		devm_kfree(dev, ports);
 
@@ -618,6 +624,7 @@ static int cpufreq_parse_dt(struct device *dev)
 	return 0;
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_CPU_VOLTAGE_CONTROL
 bool is_used_by_scaling(unsigned int freq)
 {
@@ -634,6 +641,8 @@ bool is_used_by_scaling(unsigned int freq)
 }
 #endif
 
+=======
+>>>>>>> f7fd4ee... First Commit
 #ifdef CONFIG_DEBUG_FS
 static int msm_cpufreq_show(struct seq_file *m, void *unused)
 {

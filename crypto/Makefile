@@ -105,7 +105,10 @@ obj-$(CONFIG_CRYPTO_USER_API_SKCIPHER) += algif_skcipher.o
 obj-$(CONFIG_XOR_BLOCKS) += xor.o
 obj-$(CONFIG_ASYNC_CORE) += async_tx/
 obj-$(CONFIG_ASYMMETRIC_KEY_TYPE) += asymmetric_keys/
+<<<<<<< HEAD
 obj-$(CONFIG_CRYPTO_ABLK_HELPER) += ablk_helper.o
+=======
+>>>>>>> f7fd4ee... First Commit
 
 #Keep this at the bottom
 obj-$(CONFIG_CRYPTO_FIPS) += last_file.o

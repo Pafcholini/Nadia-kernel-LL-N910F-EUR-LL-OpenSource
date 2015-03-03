@@ -63,7 +63,10 @@
 #include <linux/sched/rt.h>
 #include <linux/freezer.h>
 #include <linux/hugetlb.h>
+<<<<<<< HEAD
 #include <linux/bootmem.h>
+=======
+>>>>>>> f7fd4ee... First Commit
 
 #include <asm/futex.h>
 
@@ -73,6 +76,11 @@
 int __read_mostly futex_cmpxchg_enabled;
 #endif
 
+<<<<<<< HEAD
+=======
+#define FUTEX_HASHBITS (CONFIG_BASE_SMALL ? 4 : 8)
+
+>>>>>>> f7fd4ee... First Commit
 /*
  * Futex flags used to encode options to functions and preserve them across
  * restarts.
@@ -150,11 +158,17 @@ static const struct futex_q futex_q_init = {
 struct futex_hash_bucket {
 	spinlock_t lock;
 	struct plist_head chain;
+<<<<<<< HEAD
 } ____cacheline_aligned_in_smp;
 
 static unsigned long __read_mostly futex_hashsize;
 
 static struct futex_hash_bucket *futex_queues;
+=======
+};
+
+static struct futex_hash_bucket futex_queues[1<<FUTEX_HASHBITS];
+>>>>>>> f7fd4ee... First Commit
 
 /*
  * We hash on the keys returned from get_futex_key (see below).
@@ -164,7 +178,11 @@ static struct futex_hash_bucket *hash_futex(union futex_key *key)
 	u32 hash = jhash2((u32*)&key->both.word,
 			  (sizeof(key->both.word)+sizeof(key->both.ptr))/4,
 			  key->both.offset);
+<<<<<<< HEAD
 	return &futex_queues[hash & (futex_hashsize - 1)];
+=======
+	return &futex_queues[hash & ((1 << FUTEX_HASHBITS)-1)];
+>>>>>>> f7fd4ee... First Commit
 }
 
 /*
@@ -2856,6 +2874,7 @@ static void __init futex_detect_cmpxchg(void)
 #ifndef CONFIG_HAVE_FUTEX_CMPXCHG
 	u32 curval;
 
+<<<<<<< HEAD
 #if CONFIG_BASE_SMALL
 	futex_hashsize = 16;
 #else
@@ -2867,6 +2886,8 @@ static void __init futex_detect_cmpxchg(void)
 					       futex_hashsize < 256 ? HASH_SMALL : 0,
 					       NULL, NULL, futex_hashsize, futex_hashsize);
 
+=======
+>>>>>>> f7fd4ee... First Commit
 	/*
 	 * This will fail and we want it. Some arch implementations do
 	 * runtime detection of the futex_atomic_cmpxchg_inatomic()
@@ -2888,7 +2909,11 @@ static int __init futex_init(void)
 
 	futex_detect_cmpxchg();
 
+<<<<<<< HEAD
 	for (i = 0; i < futex_hashsize; i++) {
+=======
+	for (i = 0; i < ARRAY_SIZE(futex_queues); i++) {
+>>>>>>> f7fd4ee... First Commit
 		plist_head_init(&futex_queues[i].chain);
 		spin_lock_init(&futex_queues[i].lock);
 	}

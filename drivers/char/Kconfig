@@ -28,6 +28,7 @@ config DEVKMEM
 	  kind of kernel debugging operations.
 	  When in doubt, say "N".
 
+<<<<<<< HEAD
 config FRANDOM
 	bool "/dev/frandom device support"
 	default y
@@ -37,6 +38,8 @@ config FRANDOM
 	  than what you get from Linux' built-in /dev/urandom.
 	  When in doubt, say "N"
 
+=======
+>>>>>>> f7fd4ee... First Commit
 config STALDRV
 	bool "Stallion multiport serial support"
 	depends on SERIAL_NONSTANDARD

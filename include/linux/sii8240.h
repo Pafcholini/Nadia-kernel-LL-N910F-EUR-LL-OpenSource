@@ -107,7 +107,11 @@ struct sii8240_platform_data {
 	bool	bootup_complete;
 #endif
 };
+<<<<<<< HEAD
 extern unsigned int system_rev;
+=======
+extern int system_rev;
+>>>>>>> f7fd4ee... First Commit
 int acc_register_notifier(struct notifier_block *nb);
 #endif /* __SII8240_H__ */
 

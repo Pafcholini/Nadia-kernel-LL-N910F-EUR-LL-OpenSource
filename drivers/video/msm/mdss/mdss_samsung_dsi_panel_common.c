@@ -25,9 +25,12 @@
 #ifdef CONFIG_HAS_EARLYSUSPEND
 #include <linux/earlysuspend.h>
 #endif
+<<<<<<< HEAD
 #ifdef CONFIG_POWERSUSPEND
 #include <linux/powersuspend.h>
 #endif
+=======
+>>>>>>> f7fd4ee... First Commit
 
 #include "mdss_dsi.h"
 #include "mdss_samsung_dsi_panel_common.h"
@@ -58,9 +61,12 @@
 
 #define TEST_RESOLUTION  //for sysfs of panel resolution
 
+<<<<<<< HEAD
 unsigned int Lpanel_colors = 2;
 extern void panel_load_colors(unsigned int val);
 
+=======
+>>>>>>> f7fd4ee... First Commit
 static struct dsi_buf dsi_panel_tx_buf;
 static struct dsi_buf dsi_panel_rx_buf;
 
@@ -1472,6 +1478,7 @@ static int make_brightcontrol_set(int bl_level)
 
 }
 
+<<<<<<< HEAD
 static ssize_t panel_colors_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
   return sprintf(buf, "%d\n", Lpanel_colors);
@@ -1501,6 +1508,8 @@ static ssize_t panel_colors_store(struct device *dev, struct device_attribute *a
 static DEVICE_ATTR(panel_colors, S_IRUGO | S_IWUSR | S_IWGRP,
                  panel_colors_show, panel_colors_store);
 
+=======
+>>>>>>> f7fd4ee... First Commit
 #if !defined(CONFIG_FB_MSM_EDP_SAMSUNG)
 static int __init current_boot_mode(char *mode)
 {
@@ -2392,10 +2401,13 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 		pr_err("%s: Invalid input data\n", __func__);
 		return -EINVAL;
 	}
+<<<<<<< HEAD
     
 #ifdef CONFIG_POWERSUSPEND
     set_power_suspend_state_panel_hook(POWER_SUSPEND_INACTIVE);
 #endif
+=======
+>>>>>>> f7fd4ee... First Commit
 
 	if (unlikely(!alpm_data))
 		alpm_data = &pdata->alpm_data;
@@ -2623,9 +2635,12 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 end:
 	pinfo->blank_state = MDSS_PANEL_BLANK_BLANK;
 	pr_info("%s : --\n",__func__);
+<<<<<<< HEAD
 #ifdef CONFIG_POWERSUSPEND
     set_power_suspend_state_panel_hook(POWER_SUSPEND_ACTIVE);
 #endif
+=======
+>>>>>>> f7fd4ee... First Commit
 	return 0;
 }
 
@@ -4127,8 +4142,11 @@ static int samsung_dsi_panel_event_handler(int event)
 			is_negative_on();
 			break;
 #endif
+<<<<<<< HEAD
         case MDSS_EVENT_RESET:
             break;
+=======
+>>>>>>> f7fd4ee... First Commit
 		default:
 			pr_debug("%s: unhandled event=%d\n", __func__, event);
 			break;
@@ -5463,7 +5481,10 @@ static struct attribute *panel_sysfs_attributes[] = {
 #endif
 #if defined(PARTIAL_UPDATE)
 	&dev_attr_partial_disp.attr,
+<<<<<<< HEAD
     &dev_attr_panel_colors.attr,
+=======
+>>>>>>> f7fd4ee... First Commit
 #endif
 	&dev_attr_alpm.attr,
 #if defined(DYNAMIC_FPS_USE_TE_CTRL)

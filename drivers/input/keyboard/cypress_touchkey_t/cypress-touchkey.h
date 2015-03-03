@@ -223,7 +223,10 @@ struct cypress_touchkey_info {
 	int	device_ver;
 	bool	support_fw_update;
 	struct wake_lock fw_wakelock;
+<<<<<<< HEAD
 	atomic_t keypad_enable;
+=======
+>>>>>>> f7fd4ee... First Commit
 #ifdef CRC_CHECK_INTERNAL
 	int crc;
 #endif

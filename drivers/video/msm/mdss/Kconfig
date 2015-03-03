@@ -48,11 +48,14 @@ config MDNIE_LITE_TUNING
 	bool "MDNIe lite panel tuning"
 	default n
 
+<<<<<<< HEAD
 config MDNIE_LITE_CONTROL
 	bool "Simple MDNIe lite control interface"
 	depends on MDNIE_LITE_TUNING
 	default n
 
+=======
+>>>>>>> f7fd4ee... First Commit
 config FB_MSM_MIPI_SAMSUNG_OCTA_CMD_FULL_HD_PT_PANEL
 	bool "Support SAMSUNG OCTA Command Full-HD Panel"
 	default n
@@ -129,6 +132,7 @@ config WACOM_LCD_FREQ_COMPENSATE
 	---help---
 		Support wcom freq. calibration LUT
 
+<<<<<<< HEAD
 config FB_MSM_MDSS_KCAL_CTRL
 	depends on FB_MSM_MDSS
 	bool "MDSS color control"
@@ -137,3 +141,7 @@ config FB_MSM_MDSS_KCAL_CTRL
 	  in the MDSS sub-system.
 
 source "drivers/video/msm/mdss/samsung/Kconfig"
+=======
+
+source "drivers/video/msm/mdss/samsung/Kconfig"
+>>>>>>> f7fd4ee... First Commit

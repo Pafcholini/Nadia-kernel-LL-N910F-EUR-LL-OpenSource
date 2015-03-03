@@ -53,7 +53,11 @@ int w1_max_slave_ttl = 1;
 
 static struct w1_master *master_dev = NULL;
 
+<<<<<<< HEAD
 extern int id, color, model, detect, verification, user;
+=======
+extern int id, color, model, detect, verification;
+>>>>>>> f7fd4ee... First Commit
 #ifdef CONFIG_W1_SN
 extern char g_sn[14];
 #endif
@@ -527,6 +531,7 @@ void w1_master_search(void);
 #if defined(CONFIG_W1_SLAVE_DS28E15) || defined(CONFIG_W1_SLAVE_DS28EL35)
 static ssize_t w1_master_attribute_show_verify_mac(struct device *dev, struct device_attribute *attr, char *buf)
 {
+<<<<<<< HEAD
     if (user == 1) {
         return sprintf(buf, "%d\n", 0);
     } else {
@@ -551,16 +556,34 @@ static ssize_t w1_master_attribute_show_verify_mac(struct device *dev, struct de
 #endif
         return sprintf(buf, "%d\n", result);
     }
+=======
+	int result = -1;
+#if defined(CONFIG_SEC_FACTORY) && defined(CONFIG_W1_SLAVE_DS28EL35)
+	struct w1_master *md = dev_to_w1_master(dev);
+
+	pr_info("%s: TEST LOG\n", __func__);
+	mutex_lock(&md->mutex);
+	w1_master_search();
+	mutex_unlock(&md->mutex);
+#endif
+	result = verification;
+
+	return sprintf(buf, "%d\n", result);
+>>>>>>> f7fd4ee... First Commit
 }
 
 static ssize_t w1_master_attribute_show_check_id(struct device *dev, struct device_attribute *attr, char *buf)
 {
+<<<<<<< HEAD
     if (user == 1) {
         return sprintf(buf, "%d\n", 1);
     } else {
         return sprintf(buf, "%d\n", id);
     }
     
+=======
+	return sprintf(buf, "%d\n", id);
+>>>>>>> f7fd4ee... First Commit
 }
 
 static ssize_t w1_master_attribute_show_check_color(struct device *dev, struct device_attribute *attr, char *buf)
@@ -570,12 +593,16 @@ static ssize_t w1_master_attribute_show_check_color(struct device *dev, struct d
 
 static ssize_t w1_master_attribute_show_check_model(struct device *dev, struct device_attribute *attr, char *buf)
 {
+<<<<<<< HEAD
     if (user == 1) {
         return sprintf(buf, "%d\n", 2);
     } else {
         return sprintf(buf, "%d\n", model);
     }
 
+=======
+	return sprintf(buf, "%d\n", model);
+>>>>>>> f7fd4ee... First Commit
 }
 
 static ssize_t w1_master_attribute_show_check_detect(struct device *dev, struct device_attribute *attr, char *buf)
@@ -584,6 +611,7 @@ static ssize_t w1_master_attribute_show_check_detect(struct device *dev, struct 
 	return sprintf(buf, "%d\n", detect);
 }
 
+<<<<<<< HEAD
 static ssize_t w1_master_attribute_store_check_user(struct device * dev,
                                                     struct device_attribute *attr,
                                                     const char * buf, size_t count)
@@ -614,6 +642,8 @@ static ssize_t w1_master_attribute_show_check_user(struct device *dev, struct de
 #endif
 }
 
+=======
+>>>>>>> f7fd4ee... First Commit
 #ifdef CONFIG_W1_SN
 static ssize_t w1_master_attribute_show_check_sn(struct device *dev, struct device_attribute *attr, char *buf)
 {
@@ -653,7 +683,10 @@ static W1_MASTER_ATTR_RO(check_id, S_IRUGO);
 static W1_MASTER_ATTR_RO(check_color, S_IRUGO);
 static W1_MASTER_ATTR_RO(check_model, S_IRUGO);
 static W1_MASTER_ATTR_RO(check_detect, S_IRUGO);
+<<<<<<< HEAD
 static W1_MASTER_ATTR_RW(check_user, S_IRUGO | S_IWUSR | S_IWGRP);
+=======
+>>>>>>> f7fd4ee... First Commit
 #ifdef CONFIG_W1_SN
 static W1_MASTER_ATTR_RO(check_sn, S_IRUGO);
 #endif
@@ -676,7 +709,10 @@ static struct attribute *w1_master_default_attrs[] = {
 	&w1_master_attribute_check_id.attr,
 	&w1_master_attribute_check_color.attr,
 	&w1_master_attribute_check_model.attr,
+<<<<<<< HEAD
 	&w1_master_attribute_check_user.attr,
+=======
+>>>>>>> f7fd4ee... First Commit
 #ifdef CONFIG_W1_SN
 	&w1_master_attribute_check_sn.attr,
 #endif

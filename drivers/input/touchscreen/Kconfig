@@ -1024,6 +1024,7 @@ config SEC_STRING_ENABLE
 
 	  If unsure, say N.
 
+<<<<<<< HEAD
 config TOUCHSCREEN_SWEEP2WAKE
        tristate "Sweep2Wake for touchscreens"
        select TOUCHSCREEN_PREVENT_SLEEP
@@ -1035,6 +1036,8 @@ config TOUCHSCREEN_PREVENT_SLEEP
        help
          This disables the sleep function of modified touchscreen drivers.
 
+=======
+>>>>>>> f7fd4ee... First Commit
 source "drivers/input/touchscreen/wacom/Kconfig"
 source "drivers/input/touchscreen/gt9xx/Kconfig"
 source "drivers/input/touchscreen/synaptics/Kconfig"

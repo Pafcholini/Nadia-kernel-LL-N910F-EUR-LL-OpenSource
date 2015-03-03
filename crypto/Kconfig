@@ -179,10 +179,13 @@ config CRYPTO_ABLK_HELPER_X86
 	depends on X86
 	select CRYPTO_CRYPTD
 
+<<<<<<< HEAD
 config CRYPTO_ABLK_HELPER
 	tristate
 	select CRYPTO_CRYPTD
 
+=======
+>>>>>>> f7fd4ee... First Commit
 config CRYPTO_GLUE_HELPER_X86
 	tristate
 	depends on X86
@@ -534,6 +537,7 @@ config CRYPTO_SHA1_PPC
 	  This is the powerpc hardware accelerated implementation of the
 	  SHA-1 secure hash standard (FIPS 180-1/DFIPS 180-2).
 
+<<<<<<< HEAD
 config CRYPTO_SHA1_ARM_NEON
 	tristate "SHA1 digest algorithm (ARM NEON)"
 	depends on ARM && KERNEL_MODE_NEON && !CPU_BIG_ENDIAN
@@ -545,6 +549,8 @@ config CRYPTO_SHA1_ARM_NEON
 	  using optimized ARM NEON assembly, when NEON instructions are
 	  available.
 
+=======
+>>>>>>> f7fd4ee... First Commit
 config CRYPTO_SHA256
 	tristate "SHA224 and SHA256 digest algorithm"
 	select CRYPTO_HASH
@@ -578,6 +584,7 @@ config CRYPTO_SHA512
 	  This code also includes SHA-384, a 384 bit hash with 192 bits
 	  of security against collision attacks.
 
+<<<<<<< HEAD
 config CRYPTO_SHA512_ARM_NEON
 	tristate "SHA384 and SHA512 digest algorithm (ARM NEON)"
 	depends on ARM && KERNEL_MODE_NEON && !CPU_BIG_ENDIAN
@@ -593,6 +600,8 @@ config CRYPTO_SHA512_ARM_NEON
 	  This code also includes SHA-384, a 384 bit hash with 192 bits
 	  of security against collision attacks.
 
+=======
+>>>>>>> f7fd4ee... First Commit
 config CRYPTO_SHA512_SPARC64
 	tristate "SHA384 and SHA512 digest algorithm (SPARC64)"
 	depends on SPARC64
@@ -789,6 +798,7 @@ config CRYPTO_AES_ARM
 
 	  See <http://csrc.nist.gov/encryption/aes/> for more information.
 
+<<<<<<< HEAD
 config CRYPTO_AES_ARM_BS
 	tristate "Bit sliced AES using NEON instructions"
 	depends on ARM && KERNEL_MODE_NEON
@@ -805,6 +815,8 @@ config CRYPTO_AES_ARM_BS
 	  This implementation does not rely on any lookup tables so it is
 	  believed to be invulnerable to cache timing attacks.
 
+=======
+>>>>>>> f7fd4ee... First Commit
 config CRYPTO_ANUBIS
 	tristate "Anubis cipher algorithm"
 	select CRYPTO_ALGAPI
