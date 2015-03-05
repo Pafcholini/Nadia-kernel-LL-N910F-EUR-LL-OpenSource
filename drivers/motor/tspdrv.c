@@ -116,24 +116,11 @@ static int max_timeout = 10000;
 
 static int vibrator_value = -1;
 static int vibrator_work;
+int8_t vibe_strength = 125;
 
 #define TEST_MODE_TIME 10000
 
 struct vibrator_platform_data vibrator_drvdata;
-
-/*
- * msm8974_sec tspdrv vibration strength control
- * (/sys/class/timed_output/vibrator/pwm_value)
- *
- * sysfs pwm_value
- *    range   : 0 - 100 (100 = old hardcoded value)
- *
- * Author : Park Ju Hyung <qkrwngud825@gmail.com>
- * Modified by : Jean-Pierre Rasquin <yank555.lu@gmail.com>
- */
-
-#define BASE_STRENGTH 126
-static unsigned int pwm_val = 100;
 
 static int set_vibetonz(int timeout)
 {
@@ -148,7 +135,7 @@ static int set_vibetonz(int timeout)
 	} else {
 		DbgOut((KERN_INFO "tspdrv: ENABLE\n"));
 		if (vibrator_drvdata.vib_model == HAPTIC_PWM) {
-			strength = (int8_t) (BASE_STRENGTH * pwm_val / 100);
+			strength = vibe_strength;
 			/* 90% duty cycle */
 			ImmVibeSPI_ForceOut_SetSamples(0, 8, 1, &strength);
 		} else { /* HAPTIC_MOTOR */
@@ -161,39 +148,33 @@ static int set_vibetonz(int timeout)
 	return 0;
 }
 
-static ssize_t pwm_value_show(struct device *dev, struct device_attribute *attr, char *buf)
-{
-	return sprintf(buf, "%u\n", pwm_val);
-}
-
-ssize_t pwm_value_store(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
-{
-	unsigned int new_pwm_val;
-
-	if (!sscanf(buf, "%u", &new_pwm_val))
-		return -EINVAL;
-
-	if (new_pwm_val < 0 || new_pwm_val > 100) {
-		pr_info("[VIB] %s: new pwm_val %d is out of [0, 100] range\n", __func__, pwm_val);
-		return -EINVAL;
-	} else {
-		pr_info("[VIB] %s: pwm_val=%d\n", __func__, pwm_val);
-	}
-
-	if (new_pwm_val != pwm_val)
-		pwm_val = new_pwm_val;
-
-	return count;
-}
-
-static DEVICE_ATTR(pwm_value, S_IRUGO | S_IWUSR,
-		pwm_value_show, pwm_value_store);
-
 static void _set_vibetonz_work(struct work_struct *unused)
 {
 	set_vibetonz(vibrator_work);
 	return;
 }
+
+static ssize_t show_vibe_strength(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d\n", vibe_strength);
+}
+
+static ssize_t store_vibe_strength(struct device *dev, struct device_attribute *attr,const char *buf, size_t size)
+{
+	int value;
+	sscanf(buf, "%d", &value);
+	if(value < 5)
+		value = 5;
+	else if(value > 125)
+		value = 125;
+
+	vibe_strength = value;
+
+	return vibe_strength;
+}
+
+static DEVICE_ATTR(vibe_strength, 0777, show_vibe_strength, store_vibe_strength);
+
 
 static enum hrtimer_restart vibetonz_timer_func(struct hrtimer *timer)
 {
@@ -257,17 +238,13 @@ static void vibetonz_start(void)
 
 	ret = timed_output_dev_register(&timed_output_vt);
 
-	if (ret) {
-		DbgOut((KERN_ERR
-		"tspdrv: timed_output_dev_register is fail\n"));
-		return;
-	}
-
-	ret = device_create_file(timed_output_vt.dev, &dev_attr_pwm_value);
-
 	if (ret)
 		DbgOut((KERN_ERR
-		"tspdrv: create sysfs fail: pwm_value\n"));
+		"tspdrv: timed_output_dev_register is fail\n"));
+
+	ret = device_create_file(timed_output_vt.dev, &dev_attr_vibe_strength);
+	if(ret)
+		printk(KERN_ERR "[VIBETONZ] vibe_strength device file create failed\n");
 }
 
 /* File IO */
