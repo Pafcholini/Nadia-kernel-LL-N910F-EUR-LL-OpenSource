@@ -195,10 +195,7 @@ struct msm_pcm_routing_bdai_data {
 	unsigned int  sample_rate;
 	unsigned int  channel;
 	unsigned int  format;
-<<<<<<< HEAD
 	u32 compr_passthr_mode;
-=======
->>>>>>> a85417e... ASoC: msm: qdsp6v2: Add device dependent nodes
 	char *name;
 };
 
