@@ -7240,10 +7240,7 @@ static int taiko_codec_probe(struct snd_soc_codec *codec)
 		rco_clk_rate = TAIKO_MCLK_CLK_12P288MHZ;
 	else
 		rco_clk_rate = TAIKO_MCLK_CLK_9P6MHZ;
-<<<<<<< HEAD
 
-=======
->>>>>>> 198a77e... ASoC: wcd9330: use hwdep nodes to get calibration
 	taiko->fw_data = kzalloc(sizeof(*(taiko->fw_data)), GFP_KERNEL);
 	if (!taiko->fw_data) {
 		dev_err(codec->dev, "Failed to allocate fw_data\n");
