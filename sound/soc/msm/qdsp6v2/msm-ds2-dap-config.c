@@ -60,13 +60,6 @@ enum {
 	MODULE_DISABLE = 0,
 	MODULE_ENABLE,
 };
-
-#include "msm-ds2-dap-config.h"
-#include "msm-pcm-routing-v2.h"
-#include "q6core.h"
-
-#ifdef CONFIG_DOLBY_DS2
-
 /* dolby param ids to/from dsp */
 static uint32_t	ds2_dap_params_id[MAX_DS2_PARAMS] = {
 	DOLBY_PARAM_ID_VDHE, DOLBY_PARAM_ID_VSPE, DOLBY_PARAM_ID_DSSF,
@@ -168,35 +161,23 @@ struct ds2_device_mapping {
 	int cache_dev;
 	uint32_t stream_ref_count;
 	bool active;
-<<<<<<< HEAD
 	void *cal_data;
 };
 
 static struct ds2_device_mapping dev_map[DS2_DEVICES_ALL];
-=======
-};
-
-static struct ds2_device_mapping dev_map[NUM_DS2_ENDP_DEVICE];
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 
 struct ds2_dap_params_states_s {
 	bool use_cache;
 	bool dap_bypass;
-<<<<<<< HEAD
 	bool dap_bypass_type;
 	bool node_opened;
 	int32_t  device;
 	bool custom_stereo_onoff;
-=======
-	bool node_opened;
-	int32_t  device;
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 };
 
 static struct ds2_dap_params_states_s ds2_dap_params_states = {true, false,
 				false, DEVICE_NONE};
 
-<<<<<<< HEAD
 static int all_supported_devices = EARPIECE|SPEAKER|WIRED_HEADSET|
 			WIRED_HEADPHONE|BLUETOOTH_SCO|AUX_DIGITAL|
 			ANLG_DOCK_HEADSET|DGTL_DOCK_HEADSET|
@@ -702,15 +683,6 @@ end:
 }
 
 static bool msm_ds2_dap_check_is_param_modified(int32_t *dap_params_modified,
-=======
-int all_supported_devices = EARPIECE|SPEAKER|WIRED_HEADSET|WIRED_HEADPHONE|
-			BLUETOOTH_SCO|AUX_DIGITAL|ANLG_DOCK_HEADSET|
-			DGTL_DOCK_HEADSET|REMOTE_SUBMIX|ANC_HEADSET|
-			ANC_HEADPHONE|PROXY|FM|FM_TX|DEVICE_NONE|
-			BLUETOOTH_SCO_HEADSET|BLUETOOTH_SCO_CARKIT;
-
-static bool check_is_param_modified(int32_t *dap_params_modified,
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 				    int32_t idx, int32_t commit)
 {
 	if ((dap_params_modified[idx] == 0) ||
@@ -724,11 +696,7 @@ static bool check_is_param_modified(int32_t *dap_params_modified,
 	return true;
 }
 
-<<<<<<< HEAD
 static int msm_ds2_dap_map_device_to_dolby_cache_devices(int32_t device_id)
-=======
-static int map_device_to_dolby_cache_devices(int32_t device_id)
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 {
 	int32_t cache_dev = -1;
 	switch (device_id) {
@@ -768,11 +736,7 @@ static int map_device_to_dolby_cache_devices(int32_t device_id)
 	return cache_dev;
 }
 
-<<<<<<< HEAD
 static int msm_ds2_dap_update_num_devices(struct dolby_param_data *dolby_data,
-=======
-static int msm_ds2_update_num_devices(struct dolby_param_data *dolby_data,
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 				      int32_t *num_device, int32_t *dev_arr,
 				      int32_t array_size)
 {
@@ -855,17 +819,10 @@ end:
 	return port_id;
 }
 
-<<<<<<< HEAD
 static int msm_ds2_dap_update_dev_map_port_id(int32_t device_id, int port_id)
 {
 	int i;
 	for (i = 0; i < DS2_DEVICES_ALL; i++) {
-=======
-static int msm_update_dev_map_port_id(int32_t device_id, int port_id)
-{
-	int i;
-	for (i = 0; i < NUM_DS2_ENDP_DEVICE; i++) {
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		if (dev_map[i].device_id == device_id)
 			dev_map[i].port_id = port_id;
 	}
@@ -874,7 +831,6 @@ static int msm_update_dev_map_port_id(int32_t device_id, int port_id)
 	return 0;
 }
 
-<<<<<<< HEAD
 static int msm_ds2_dap_handle_bypass_wait(int port_id, int wait_time)
 {
 	int ret = 0;
@@ -1067,26 +1023,6 @@ end:
 	kfree(mod_list);
 	pr_debug("%s:return rc=%d\n", __func__, rc);
 	return rc;
-=======
-static int msm_ds2_get_device_index_from_port_id(int port_id)
-{
-	int i, idx = -1;
-	for (i = 0; i < NUM_DS2_ENDP_DEVICE; i++) {
-		if ((dev_map[i].port_id == port_id) &&
-			/*TODO: handle multiple instance */
-			(dev_map[i].device_id ==
-			ds2_dap_params_states.device)) {
-			idx = i;
-			if (dev_map[i].device_id == SPEAKER)
-				continue;
-			else
-				break;
-		}
-	}
-	pr_debug("%s: port: %d, idx %d, dev 0x%x\n",  __func__, port_id, idx,
-		 dev_map[idx].device_id);
-	return idx;
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 }
 
 static int msm_ds2_dap_send_end_point(int dev_map_idx, int endp_idx)
@@ -1100,24 +1036,12 @@ static int msm_ds2_dap_send_end_point(int dev_map_idx, int endp_idx)
 	struct ds2_dap_params_s *ds2_ap_params_obj = NULL;
 	int32_t *modified_param = NULL;
 
-<<<<<<< HEAD
 	if (dev_map_idx < 0 || dev_map_idx >= DS2_DEVICES_ALL) {
-=======
-	if (dev_map_idx < 0 || dev_map_idx >= NUM_DS2_ENDP_DEVICE) {
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		pr_err("%s: invalid dev map index %d\n", __func__, dev_map_idx);
 		rc = -EINVAL;
 		goto end;
 	}
 
-<<<<<<< HEAD
-=======
-	if (ds2_dap_params_states.dap_bypass == true) {
-		pr_debug("%s: use bypass cache\n", __func__);
-		cache_device =  dev_map[0].cache_dev;
-	}
-
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 	ds2_ap_params_obj = &ds2_dap_params[cache_device];
 	pr_debug("%s: cache dev %d, dev_map_idx %d\n", __func__,
 		 cache_device, dev_map_idx);
@@ -1142,18 +1066,12 @@ static int msm_ds2_dap_send_end_point(int dev_map_idx, int endp_idx)
 	*update_params_value++ = DOLBY_PARAM_INT_ENDP_LENGTH * sizeof(uint32_t);
 	*update_params_value++ = ds2_ap_params_obj->params_val[
 					ds2_dap_params_offset[endp_idx]];
-<<<<<<< HEAD
 	pr_debug("%s: off %d, length %d\n", __func__,
 		 ds2_dap_params_offset[endp_idx],
 		 ds2_dap_params_length[endp_idx]);
 	pr_debug("%s: param 0x%x, param val %d\n", __func__,
 		 ds2_dap_params_id[endp_idx], ds2_ap_params_obj->
 		 params_val[ds2_dap_params_offset[endp_idx]]);
-=======
-	pr_debug("%s: param 0x%x, param val %d\n", __func__,
-		ds2_dap_params_id[endp_idx],
-		ds2_ap_params_obj->params_val[ds2_dap_params_offset[endp_idx]]);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 	rc = adm_dolby_dap_send_params(dev_map[dev_map_idx].port_id,
 				       params_value, params_length);
 	if (rc) {
@@ -1168,11 +1086,7 @@ static int msm_ds2_dap_send_end_point(int dev_map_idx, int endp_idx)
 		goto end;
 	}
 
-<<<<<<< HEAD
 	if (msm_ds2_dap_check_is_param_modified(modified_param, endp_idx, 0))
-=======
-	if (check_is_param_modified(modified_param, endp_idx, 0))
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		ds2_ap_params_obj->dap_params_modified[endp_idx] = 0x00010001;
 
 end:
@@ -1194,23 +1108,15 @@ static int msm_ds2_dap_send_cached_params(int dev_map_idx,
 	struct ds2_dap_params_s *ds2_ap_params_obj = NULL;
 	int32_t *modified_param = NULL;
 
-<<<<<<< HEAD
 	if (dev_map_idx < 0 || dev_map_idx >= DS2_DEVICES_ALL) {
-=======
-	if (dev_map_idx < 0 || dev_map_idx >= NUM_DS2_ENDP_DEVICE) {
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		pr_err("%s: invalid dev map index %d\n", __func__, dev_map_idx);
 		ret = -EINVAL;
 		goto end;
 	}
 
-<<<<<<< HEAD
 	/* Use off profile cache in only for soft bypass */
 	if (ds2_dap_params_states.dap_bypass_type == DAP_SOFT_BYPASS &&
 		ds2_dap_params_states.dap_bypass == true) {
-=======
-	if (ds2_dap_params_states.dap_bypass == true) {
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		pr_debug("%s: use bypass cache 0\n", __func__);
 		cache_device =  dev_map[0].cache_dev;
 	}
@@ -1243,12 +1149,8 @@ static int msm_ds2_dap_send_cached_params(int dev_map_idx,
 			ret = -EINVAL;
 			goto end;
 		}
-<<<<<<< HEAD
 		if (!msm_ds2_dap_check_is_param_modified(modified_param, i,
 							 commit))
-=======
-		if (!check_is_param_modified(modified_param, i, commit))
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 			continue;
 		*update_params_value++ = DOLBY_BUNDLE_MODULE_ID;
 		*update_params_value++ = ds2_dap_params_id[i];
@@ -1258,16 +1160,10 @@ static int msm_ds2_dap_send_cached_params(int dev_map_idx,
 		for (j = 0; j < ds2_dap_params_length[i]; j++) {
 			*update_params_value++ =
 					ds2_ap_params_obj->params_val[idx+j];
-<<<<<<< HEAD
 			pr_debug("%s: id 0x%x,val %d\n", __func__,
 				 ds2_dap_params_id[i],
 				 ds2_ap_params_obj->params_val[idx+j]);
 		}
-=======
-		}
-		pr_debug("%s: id 0x%x,val %d\n", __func__, ds2_dap_params_id[i],
-			 ds2_ap_params_obj->params_val[idx+j]);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		params_length += (DOLBY_PARAM_PAYLOAD_SIZE +
 				ds2_dap_params_length[i]) * sizeof(uint32_t);
 	}
@@ -1291,12 +1187,8 @@ static int msm_ds2_dap_send_cached_params(int dev_map_idx,
 				ret = -EINVAL;
 				goto end;
 			}
-<<<<<<< HEAD
 			if (!msm_ds2_dap_check_is_param_modified(
 					modified_param, i, commit))
-=======
-			if (!check_is_param_modified(modified_param, i, commit))
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 				continue;
 			ds2_ap_params_obj->dap_params_modified[i] = 0x00010001;
 		}
@@ -1306,18 +1198,13 @@ end:
 	return ret;
 }
 
-<<<<<<< HEAD
 static int msm_ds2_dap_commit_params(struct dolby_param_data *dolby_data,
-=======
-static int msm_ds2_commit_params(struct dolby_param_data *dolby_data,
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 				 int commit)
 {
 	int ret = 0, i, idx;
 	struct ds2_dap_params_s *ds2_ap_params_obj =  NULL;
 	int32_t *modified_param = NULL;
 
-<<<<<<< HEAD
 	/* Do not commit params if in hard bypass */
 	if (ds2_dap_params_states.dap_bypass_type == DAP_HARD_BYPASS &&
 		ds2_dap_params_states.dap_bypass == true) {
@@ -1325,8 +1212,6 @@ static int msm_ds2_commit_params(struct dolby_param_data *dolby_data,
 		ret = -EINVAL;
 		goto end;
 	}
-=======
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 	for (idx = 0; idx < MAX_DS2_PARAMS; idx++) {
 		if (DOLBY_PARAM_ID_INIT_ENDP == ds2_dap_params_id[idx])
 			break;
@@ -1339,7 +1224,6 @@ static int msm_ds2_commit_params(struct dolby_param_data *dolby_data,
 	}
 	pr_debug("%s: found endp - idx %d 0x%x\n", __func__, idx,
 		ds2_dap_params_id[idx]);
-<<<<<<< HEAD
 	for (i = 0; i < DS2_DEVICES_ALL; i++) {
 		pr_debug("%s:dev[0x%x,0x%x],i:%d,active:%d,bypass:%d,type:%d\n",
 			__func__, dolby_data->device_id, dev_map[i].device_id,
@@ -1356,19 +1240,6 @@ static int msm_ds2_commit_params(struct dolby_param_data *dolby_data,
 			if ((ds2_dap_params_states.dap_bypass_type ==
 				DAP_SOFT_BYPASS) &&
 				(ds2_dap_params_states.dap_bypass == true))
-=======
-	for (i = 0; i < NUM_DS2_ENDP_DEVICE; i++) {
-		pr_debug("%s:Commit dev [0x%x,0x%x] idx  %d, active %d bypass %d\n",
-			__func__, dolby_data->device_id, dev_map[i].device_id,
-			i, dev_map[i].active, ds2_dap_params_states.dap_bypass);
-
-		if (((dev_map[i].device_id == ds2_dap_params_states.device) ||
-			(ds2_dap_params_states.dap_bypass == true)) &&
-			(dev_map[i].active == true)) {
-
-			/*get ptr to the cache storing the params for device*/
-			if (ds2_dap_params_states.dap_bypass == true)
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 				ds2_ap_params_obj =
 					&ds2_dap_params[dev_map[0].cache_dev];
 			else
@@ -1387,11 +1258,7 @@ static int msm_ds2_commit_params(struct dolby_param_data *dolby_data,
 			 * Send the endp param if use cache is set
 			 * or if param is modified
 			 */
-<<<<<<< HEAD
 			if (!commit || msm_ds2_dap_check_is_param_modified(
-=======
-			if (!commit || check_is_param_modified(
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 					modified_param, idx, commit)) {
 				msm_ds2_dap_send_end_point(i, idx);
 				commit = 0;
@@ -1424,19 +1291,11 @@ static int msm_ds2_dap_handle_commands(u32 cmd, void *arg)
 
 	switch (dolby_data.param_id) {
 	case DAP_CMD_COMMIT_ALL:
-<<<<<<< HEAD
 		msm_ds2_dap_commit_params(&dolby_data, 0);
 	break;
 
 	case DAP_CMD_COMMIT_CHANGED:
 		msm_ds2_dap_commit_params(&dolby_data, 1);
-=======
-		msm_ds2_commit_params(&dolby_data, 0);
-	break;
-
-	case DAP_CMD_COMMIT_CHANGED:
-		msm_ds2_commit_params(&dolby_data, 1);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 	break;
 
 	case DAP_CMD_USE_CACHE_FOR_INIT:
@@ -1444,7 +1303,6 @@ static int msm_ds2_dap_handle_commands(u32 cmd, void *arg)
 	break;
 
 	case DAP_CMD_SET_BYPASS:
-<<<<<<< HEAD
 		pr_debug("%s: bypass %d bypass type %d, data %d\n", __func__,
 			 ds2_dap_params_states.dap_bypass,
 			 ds2_dap_params_states.dap_bypass_type,
@@ -1469,32 +1327,20 @@ static int msm_ds2_dap_handle_commands(u32 cmd, void *arg)
 				DAP_SOFT_BYPASS;
 		pr_debug("%s: bypass type %d", __func__,
 			 ds2_dap_params_states.dap_bypass_type);
-=======
-		ds2_dap_params_states.dap_bypass = dolby_data.data[0];
-		msm_ds2_commit_params(&dolby_data, 0);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 	break;
 
 	case DAP_CMD_SET_ACTIVE_DEVICE:
 		pr_debug("%s: DAP_CMD_SET_ACTIVE_DEVICE length %d\n",
 			__func__, dolby_data.length);
 		/* TODO: need to handle multiple instance*/
-<<<<<<< HEAD
 		ds2_dap_params_states.device |= dolby_data.device_id;
-=======
-		ds2_dap_params_states.device = dolby_data.device_id;
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		port_id = msm_ds2_dap_get_port_id(
 						  dolby_data.device_id,
 						  dolby_data.be_id);
 		pr_debug("%s: device id 0x%x all_dev 0x%x port_id %d\n",
 			__func__, dolby_data.device_id,
 			ds2_dap_params_states.device, port_id);
-<<<<<<< HEAD
 		msm_ds2_dap_update_dev_map_port_id(dolby_data.device_id,
-=======
-		msm_update_dev_map_port_id(dolby_data.device_id,
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 					   port_id);
 		if (port_id == DOLBY_INVALID_PORT_ID) {
 			pr_err("%s: invalid port id %d\n", __func__, port_id);
@@ -1512,11 +1358,7 @@ static int msm_ds2_dap_set_param(u32 cmd, void *arg)
 {
 	int rc = 0, idx, i, j, off, port_id = 0, cdev = 0;
 	int32_t num_device = 0;
-<<<<<<< HEAD
 	int32_t dev_arr[DS2_DSP_SUPPORTED_ENDP_DEVICE] = {0};
-=======
-	int32_t dev_arr[NUM_DS2_ENDP_DEVICE] = {0};
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 	struct dolby_param_data dolby_data;
 
 	if (copy_from_user((void *)&dolby_data, (void *)arg,
@@ -1526,13 +1368,8 @@ static int msm_ds2_dap_set_param(u32 cmd, void *arg)
 		goto end;
 	}
 
-<<<<<<< HEAD
 	rc = msm_ds2_dap_update_num_devices(&dolby_data, &num_device, dev_arr,
 					    DS2_DSP_SUPPORTED_ENDP_DEVICE);
-=======
-	rc = msm_ds2_update_num_devices(&dolby_data, &num_device, dev_arr,
-				   NUM_DS2_ENDP_DEVICE);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 	if (num_device == 0 || rc < 0) {
 		pr_err("%s: num devices 0\n", __func__);
 		rc = -EINVAL;
@@ -1541,35 +1378,20 @@ static int msm_ds2_dap_set_param(u32 cmd, void *arg)
 	for (i = 0; i < num_device; i++) {
 		port_id = msm_ds2_dap_get_port_id(dev_arr[i],
 						  dolby_data.be_id);
-<<<<<<< HEAD
 		if (port_id != DOLBY_INVALID_PORT_ID)
 			msm_ds2_dap_update_dev_map_port_id(dev_arr[i], port_id);
 
 		cdev = msm_ds2_dap_map_device_to_dolby_cache_devices(
 							  dev_arr[i]);
-=======
-		pr_debug("%s: port_id %d, be id %d, devi_id 0x%x\n", __func__,
-			 port_id, dolby_data.be_id, dev_arr[i]);
-		if (port_id != DOLBY_INVALID_PORT_ID)
-			msm_update_dev_map_port_id(dev_arr[i], port_id);
-
-		cdev = map_device_to_dolby_cache_devices(dev_arr[i]);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		if (cdev < 0 || cdev >= DOLBY_MAX_CACHE) {
 			pr_err("%s: Invalide cache device %d for device 0x%x\n",
 				__func__, cdev, dev_arr[i]);
 			rc = -EINVAL;
 			goto end;
 		}
-<<<<<<< HEAD
 		pr_debug("%s:port:%d,be:%d,dev:0x%x,cdev:%d,param:0x%x,len:%d\n"
 			 , __func__, port_id, dolby_data.be_id, dev_arr[i],
 			 cdev, dolby_data.param_id, dolby_data.length);
-=======
-		pr_debug("%s:port:%d,be:%d,dev:0x%x,cdev:%d,param_id:0x%x\n",
-			 __func__, port_id, dolby_data.be_id, dev_arr[i],
-			 cdev, dolby_data.param_id);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		for (idx = 0; idx < MAX_DS2_PARAMS; idx++) {
 			/*paramid from user space*/
 			if (dolby_data.param_id == ds2_dap_params_id[idx])
@@ -1588,15 +1410,10 @@ static int msm_ds2_dap_set_param(u32 cmd, void *arg)
 			off = ds2_dap_params_offset[idx];
 			ds2_dap_params[cdev].params_val[off + j] =
 							dolby_data.data[j];
-<<<<<<< HEAD
 				pr_debug("%s:off %d,val[i/p:o/p]-[%d / %d]\n",
 					 __func__, off, dolby_data.data[j],
 					 ds2_dap_params[cdev].
 					 params_val[off + j]);
-=======
-			pr_debug("%s:cdev %d,value[%d]:%d\n",
-				 __func__, cdev, j, dolby_data.data[j]);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		}
 	}
 end:
@@ -1621,25 +1438,16 @@ static int msm_ds2_dap_get_param(u32 cmd, void *arg)
 		return -EFAULT;
 	}
 
-<<<<<<< HEAD
 	/* Return error on get param in soft or hard bypass */
 	if (ds2_dap_params_states.dap_bypass == true) {
 		pr_err("%s: called in bypass_type %d bypass %d\n", __func__,
 			ds2_dap_params_states.dap_bypass_type,
-=======
-	if (ds2_dap_params_states.dap_bypass) {
-		pr_err("%s: called in bypass %d\n", __func__,
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 			ds2_dap_params_states.dap_bypass);
 		rc = -EINVAL;
 		goto end;
 	}
 
-<<<<<<< HEAD
 	for (i = 0; i < DS2_DEVICES_ALL; i++) {
-=======
-	for (i = 0; i < NUM_DS2_ENDP_DEVICE; i++) {
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		if ((dev_map[i].active) &&
 			(dev_map[i].device_id & dolby_data.device_id)) {
 			port_id = dev_map[i].port_id;
@@ -1710,75 +1518,6 @@ end:
 	return rc;
 }
 
-<<<<<<< HEAD
-=======
-static int msm_ds2_dap_set_vspe_vdhe(int dev_map_idx,
-				     bool is_custom_stereo_enabled)
-{
-	char *params_value = NULL;
-	int32_t *update_params_value;
-	int idx, i, j, rc = 0, cdev;
-	uint32_t params_length = (TOTAL_LENGTH_DOLBY_PARAM +
-				2 * DOLBY_PARAM_PAYLOAD_SIZE) *
-				sizeof(uint32_t);
-
-	if (dev_map_idx < 0 || dev_map_idx >= NUM_DS2_ENDP_DEVICE) {
-		pr_err("%s: invalid dev map index %d\n", __func__, dev_map_idx);
-		rc = -EINVAL;
-		goto end;
-	}
-
-	if (dev_map[dev_map_idx].port_id == DOLBY_INVALID_PORT_ID) {
-		pr_debug("%s: Invalid port id\n", __func__);
-		rc = -EINVAL;
-		goto end;
-	}
-	params_value = kzalloc(params_length, GFP_KERNEL);
-	if (!params_value) {
-		pr_err("%s: params memory alloc failed\n", __func__);
-		rc = -ENOMEM;
-		goto end;
-	}
-	update_params_value = (int32_t *)params_value;
-	params_length = 0;
-	cdev = dev_map[dev_map_idx].cache_dev;
-	/* for VDHE and VSPE DAP params at index 0 and 1 in table */
-	for (i = 0; i < 2; i++) {
-		*update_params_value++ = DOLBY_BUNDLE_MODULE_ID;
-		*update_params_value++ = ds2_dap_params_id[i];
-		*update_params_value++ = ds2_dap_params_length[i] *
-					sizeof(uint32_t);
-		idx = ds2_dap_params_offset[i];
-		for (j = 0; j < ds2_dap_params_length[i]; j++) {
-			if (is_custom_stereo_enabled)
-				*update_params_value++ = 0;
-			else
-				*update_params_value++ =
-					ds2_dap_params[cdev].params_val[idx+j];
-		}
-		params_length += (DOLBY_PARAM_PAYLOAD_SIZE +
-				  ds2_dap_params_length[i]) *
-				  sizeof(uint32_t);
-	}
-
-	pr_debug("%s: valid param length: %d\n", __func__, params_length);
-	if (params_length) {
-		rc = adm_dolby_dap_send_params(dev_map[dev_map_idx].port_id,
-					       params_value, params_length);
-		if (rc) {
-			pr_err("%s: send vdhe/vspe params failed with rc=%d\n",
-				__func__, rc);
-			kfree(params_value);
-			rc = -EINVAL;
-			goto end;
-		}
-	}
-end:
-	kfree(params_value);
-	return rc;
-}
-
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 static int msm_ds2_dap_param_visualizer_control_get(u32 cmd, void *arg)
 {
 	char *visualizer_data = NULL;
@@ -1795,11 +1534,7 @@ static int msm_ds2_dap_param_visualizer_control_get(u32 cmd, void *arg)
 		return -EFAULT;
 	}
 
-<<<<<<< HEAD
 	for (i = 0; i < DS2_DEVICES_ALL; i++) {
-=======
-	for (i = 0; i < NUM_DS2_ENDP_DEVICE; i++) {
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		if ((dev_map[i].active))  {
 			port_id = dev_map[i].port_id;
 			cache_dev = dev_map[i].cache_dev;
@@ -1826,12 +1561,8 @@ static int msm_ds2_dap_param_visualizer_control_get(u32 cmd, void *arg)
 		goto copy_data;
 	}
 
-<<<<<<< HEAD
 	/* Return error on get param in soft or hard bypass */
 	if (ds2_dap_params_states.dap_bypass == true) {
-=======
-	if (ds2_dap_params_states.dap_bypass) {
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		pr_debug("%s: visualizer called in bypass, return 0\n",
 			 __func__);
 		ret = 0;
@@ -1848,10 +1579,6 @@ static int msm_ds2_dap_param_visualizer_control_get(u32 cmd, void *arg)
 			    visualizer_data + offset);
 	if (ret) {
 		pr_err("%s: get parameters failed ret %d\n", __func__, ret);
-<<<<<<< HEAD
-=======
-		kfree(visualizer_data);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		ret = -EINVAL;
 		dolby_data.length = 0;
 		goto copy_data;
@@ -1864,10 +1591,6 @@ static int msm_ds2_dap_param_visualizer_control_get(u32 cmd, void *arg)
 			    visualizer_data + offset);
 	if (ret) {
 		pr_err("%s: get parameters failed ret %d\n", __func__, ret);
-<<<<<<< HEAD
-=======
-		kfree(visualizer_data);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		ret = -EINVAL;
 		dolby_data.length = 0;
 		goto copy_data;
@@ -1917,17 +1640,11 @@ int msm_ds2_dap_update_port_parameters(struct snd_hwdep *hw,  struct file *file,
 	pr_debug("%s: open %d\n", __func__, open);
 	ds2_dap_params_states.node_opened = open;
 	ds2_dap_params_states.dap_bypass = true;
-<<<<<<< HEAD
 	ds2_dap_params_states.dap_bypass_type = 0;
 	ds2_dap_params_states.use_cache = 0;
 	ds2_dap_params_states.device = 0;
 	ds2_dap_params_states.custom_stereo_onoff = 0;
 	for (i = 0; i < DS2_DEVICES_ALL; i++) {
-=======
-	ds2_dap_params_states.use_cache = 0;
-	ds2_dap_params_states.device = 0;
-	for (i = 0; i < ALL_DEVICES; i++) {
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		if (i == 0)
 			dev_map[i].device_id = 0;
 		else {
@@ -1937,12 +1654,8 @@ int msm_ds2_dap_update_port_parameters(struct snd_hwdep *hw,  struct file *file,
 			else
 				continue;
 		}
-<<<<<<< HEAD
 		dev_map[i].cache_dev =
 			msm_ds2_dap_map_device_to_dolby_cache_devices(
-=======
-		dev_map[i].cache_dev = map_device_to_dolby_cache_devices(
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 				    dev_map[i].device_id);
 		if (dev_map[i].cache_dev < 0 ||
 				dev_map[i].cache_dev >= DOLBY_MAX_CACHE)
@@ -1953,10 +1666,7 @@ int msm_ds2_dap_update_port_parameters(struct snd_hwdep *hw,  struct file *file,
 		dev_map[i].port_id = -1;
 		dev_map[i].active = false;
 		dev_map[i].stream_ref_count = 0;
-<<<<<<< HEAD
 		dev_map[i].cal_data = NULL;
-=======
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		pr_debug("%s: device_id 0x%x, cache_dev %d act  %d\n", __func__,
 			 dev_map[i].device_id, dev_map[i].cache_dev,
 			 dev_map[i].active);
@@ -1997,7 +1707,6 @@ int msm_ds2_dap_ioctl(struct snd_hwdep *hw, struct file *file,
 int msm_ds2_dap_init(int port_id, int channels,
 		     bool is_custom_stereo_on)
 {
-<<<<<<< HEAD
 	int ret = 0, idx = -1, i;
 	struct dolby_param_data dolby_data;
 
@@ -2022,32 +1731,19 @@ int msm_ds2_dap_init(int port_id, int channels,
 					break;
 			}
 		}
-=======
-	int ret = 0, idx = 0;
-	struct dolby_param_data dolby_data;
-
-	pr_debug("%s: port id  %d\n", __func__, port_id);
-	if (port_id != DOLBY_INVALID_PORT_ID) {
-		idx = msm_ds2_get_device_index_from_port_id(port_id);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		if (idx < 0) {
 			pr_err("%s: invalid index for port %d\n",
 				__func__, port_id);
 			ret = -EINVAL;
 			goto end;
 		}
-<<<<<<< HEAD
 		pr_debug("%s:index %d, dev[0x%x,0x%x]\n", __func__, idx,
 			 dev_map[i].device_id, ds2_dap_params_states.device);
-=======
-		dev_map[idx].stream_ref_count++;
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		dev_map[idx].active = true;
 		dolby_data.param_id = DOLBY_COMMIT_ALL_TO_DSP;
 		dolby_data.length = 0;
 		dolby_data.data = NULL;
 		dolby_data.device_id = dev_map[idx].device_id;
-<<<<<<< HEAD
 		pr_debug("%s:  idx  %d, active %d, dev id 0x%x, ref count %d\n",
 			 __func__, idx, dev_map[idx].active,
 			 dev_map[idx].device_id,
@@ -2086,20 +1782,6 @@ int msm_ds2_dap_init(int port_id, int channels,
 			set_custom_stereo_onoff(idx,
 						is_custom_stereo_on);
 		}
-=======
-		pr_debug("%s:  idx  %d, active %d, dev id 0x%x\n",
-			 __func__, idx, dev_map[idx].active,
-			 dev_map[idx].device_id);
-		ret  = msm_ds2_commit_params(&dolby_data, 0);
-		if (ret < 0) {
-			pr_err("%s: commit params ret %d\n", __func__, ret);
-			ret = -EINVAL;
-			goto end;
-		}
-		if (is_custom_stereo_on)
-			msm_ds2_dap_set_custom_stereo_onoff(idx,
-						is_custom_stereo_on);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 	}
 
 end:
@@ -2113,7 +1795,6 @@ void msm_ds2_dap_deinit(int port_id)
 	 * Check if this is same as incoming port
 	 * Set it to invalid
 	 */
-<<<<<<< HEAD
 	int idx = -1, i;
 	pr_debug("%s: port_id %d\n", __func__, port_id);
 	if (port_id != DOLBY_INVALID_PORT_ID) {
@@ -2137,18 +1818,11 @@ void msm_ds2_dap_deinit(int port_id)
 					break;
 			}
 		}
-=======
-	int idx = -1;
-	pr_debug("%s: port_id %d\n", __func__, port_id);
-	if (port_id != DOLBY_INVALID_PORT_ID) {
-		idx = msm_ds2_get_device_index_from_port_id(port_id);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 		if (idx < 0) {
 			pr_err("%s: invalid index for port %d\n",
 				__func__, port_id);
 			return;
 		}
-<<<<<<< HEAD
 		pr_debug("%s:index %d, dev [0x%x, 0x%x]\n", __func__, idx,
 			 dev_map[idx].device_id, ds2_dap_params_states.device);
 		dev_map[idx].stream_ref_count--;
@@ -2199,74 +1873,11 @@ int msm_ds2_dap_set_custom_stereo_onoff(int port_id,
 				__func__, rc, port_id);
 		}
 	}
-=======
-		dev_map[idx].stream_ref_count--;
-		if (!dev_map[idx].stream_ref_count)
-			dev_map[idx].active = false;
-		pr_debug("%s:idx  %d, active %d, dev id 0x%x\n", __func__,
-			 idx, dev_map[idx].active, dev_map[idx].device_id);
-	}
-}
-
-int msm_ds2_dap_set_custom_stereo_onoff(int dev_map_idx,
-					bool is_custom_stereo_enabled)
-{
-	char *params_value = NULL;
-	int32_t *update_params_value, rc = 0;
-	uint32_t params_length = (TOTAL_LENGTH_DOLBY_PARAM +
-				DOLBY_PARAM_PAYLOAD_SIZE) *
-				sizeof(uint32_t);
-	pr_debug("%s\n", __func__);
-
-	if (dev_map_idx < 0 || dev_map_idx >= NUM_DS2_ENDP_DEVICE) {
-		pr_err("%s: invalid dev map index %d\n", __func__, dev_map_idx);
-		rc = -EINVAL;
-		goto end;
-	}
-
-	if (dev_map[dev_map_idx].port_id == DOLBY_INVALID_PORT_ID) {
-		rc = -EINVAL;
-		goto end;
-	}
-
-	msm_ds2_dap_set_vspe_vdhe(dev_map_idx,
-				  is_custom_stereo_enabled);
-	params_value = kzalloc(params_length, GFP_KERNEL);
-	if (!params_value) {
-		pr_err("%s: params memory alloc failed\n", __func__);
-		rc = -ENOMEM;
-		goto end;
-	}
-	update_params_value = (int32_t *)params_value;
-	params_length = 0;
-	*update_params_value++ = DOLBY_BUNDLE_MODULE_ID;
-	*update_params_value++ = DOLBY_ENABLE_CUSTOM_STEREO;
-	*update_params_value++ = sizeof(uint32_t);
-	if (is_custom_stereo_enabled)
-		*update_params_value++ = 1;
-	else
-		*update_params_value++ = 0;
-	params_length += (DOLBY_PARAM_PAYLOAD_SIZE + 1) * sizeof(uint32_t);
-	pr_debug("%s: valid param length: %d\n", __func__, params_length);
-	if (params_length) {
-		rc = adm_dolby_dap_send_params(dev_map[dev_map_idx].port_id,
-					       params_value, params_length);
-		if (rc) {
-			pr_err("%s: custom stereo param failed with rc=%d\n",
-				__func__, rc);
-			rc = -EINVAL;
-			goto end;
-		}
-	}
-end:
-	kfree(params_value);
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 	return rc;
 }
 
 #else
 
-<<<<<<< HEAD
 static int msm_ds2_dap_alloc_and_store_cal_data(int dev_map_idx, int path,
 					    int perf_mode)
 {
@@ -2294,40 +1905,25 @@ static int msm_ds2_dap_init_modules_in_topology(int dev_map_idx)
 }
 
 static bool msm_ds2_dap_check_is_param_modified(int32_t *dap_params_modified,
-=======
-static bool check_is_param_modified(int32_t *dap_params_modified,
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 				    int32_t idx, int32_t commit)
 {
 	return false;
 }
 
 
-<<<<<<< HEAD
 static int msm_ds2_dap_map_device_to_dolby_cache_devices(int32_t device_id)
-=======
-static int map_device_to_dolby_cache_devices(int32_t device_id)
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 {
 	return 0;
 }
 
-<<<<<<< HEAD
 static int msm_ds2_dap_update_num_devices(struct dolby_param_data *dolby_data,
-=======
-static int msm_ds2_update_num_devices(struct dolby_param_data *dolby_data,
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 				      int32_t *num_device, int32_t *dev_arr,
 				      int32_t array_size)
 {
 	return 0;
 }
 
-<<<<<<< HEAD
 static int msm_ds2_dap_commit_params(struct dolby_param_data *dolby_data,
-=======
-static int msm_ds2_commit_params(struct dolby_param_data *dolby_data,
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 				 int commit)
 {
 	return 0;
@@ -2376,25 +1972,17 @@ static int msm_ds2_dap_set_security_control(u32 cmd, void *arg)
 {
 	return 0
 }
-<<<<<<< HEAD
 
 static int msm_ds2_dap_update_dev_map_port_id(int32_t device_id, int port_id)
 {
 	return 0;
 }
 
-=======
-static int msm_update_dev_map_port_id(int32_t device_id, int port_id)
-{
-	return 0;
-}
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 static int32_t msm_ds2_dap_get_port_id(
 		int32_t device_id, int32_t be_id)
 {
 	return 0;
 }
-<<<<<<< HEAD
 
 static int msm_ds2_dap_handle_bypass(struct dolby_param_data *dolby_data)
 {
@@ -2420,6 +2008,4 @@ int set_custom_stereo_onoff(int dev_map_idx,
 {
 	return 0;
 }
-=======
->>>>>>> 3eb9f1a... ASoC: msm: qdsp6v2: Add support for DS2 Dolby Audio Processing
 #endif /*CONFIG_DOLBY_DS2*/
