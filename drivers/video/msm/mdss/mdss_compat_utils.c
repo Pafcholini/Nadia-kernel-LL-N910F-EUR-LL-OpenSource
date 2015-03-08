@@ -462,9 +462,8 @@ int mdss_compat_overlay_ioctl(struct fb_info *info, unsigned int cmd,
 		} else {
 			ret = mdss_fb_do_ioctl(info, cmd,
 						(unsigned long) ovlist);
-			if (!ret)
-				ret = __to_user_mdp_overlaylist(ovlist32,
-							 ovlist, layers_head);
+			ret = __to_user_mdp_overlaylist(ovlist32, ovlist,
+						layers_head);
 		}
 		break;
 	case MSMFB_OVERLAY_UNSET:
