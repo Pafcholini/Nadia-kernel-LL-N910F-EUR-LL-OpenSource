@@ -106,7 +106,6 @@ struct cpufreq_policy {
 	 */
 	struct rw_semaphore	rwsem;
 
-	unsigned int util;
 };
 
 /* Only for ACPI */
@@ -302,9 +301,6 @@ int cpufreq_register_driver(struct cpufreq_driver *driver_data);
 int cpufreq_unregister_driver(struct cpufreq_driver *driver_data);
 
 const char *cpufreq_get_current_driver(void);
-
-void cpufreq_notify_utilization(struct cpufreq_policy *policy,
-		unsigned int load);
 
 static inline void cpufreq_verify_within_limits(struct cpufreq_policy *policy,
 		unsigned int min, unsigned int max)
