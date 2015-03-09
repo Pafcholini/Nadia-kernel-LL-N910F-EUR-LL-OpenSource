@@ -41,6 +41,12 @@ struct ipv6_devconf {
 	__s32		accept_source_route;
 #ifdef CONFIG_IPV6_OPTIMISTIC_DAD
 	__s32		optimistic_dad;
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_IPV6_USE_OPTIMISTIC
+	__s32		use_optimistic;
+>>>>>>> 794e011... net: ipv6: only use optimistic address if enabled
+#endif
 #endif
 #ifdef CONFIG_IPV6_MROUTE
 	__s32		mc_forwarding;
