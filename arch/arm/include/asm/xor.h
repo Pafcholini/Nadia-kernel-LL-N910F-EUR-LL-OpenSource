@@ -7,14 +7,10 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
-<<<<<<< HEAD
 #include <linux/hardirq.h>
 #include <asm-generic/xor.h>
 #include <asm/hwcap.h>
 #include <asm/neon.h>
-=======
-#include <asm-generic/xor.h>
->>>>>>> f7fd4ee... First Commit
 
 #define __XOR(a1, a2) a1 ^= a2
 
@@ -145,7 +141,6 @@ static struct xor_block_template xor_block_arm4regs = {
 		xor_speed(&xor_block_arm4regs);	\
 		xor_speed(&xor_block_8regs);	\
 		xor_speed(&xor_block_32regs);	\
-<<<<<<< HEAD
 		NEON_TEMPLATES;			\
 	} while (0)
 
@@ -217,6 +212,3 @@ static struct xor_block_template xor_block_neon = {
 #else
 #define NEON_TEMPLATES
 #endif
-=======
-	} while (0)
->>>>>>> f7fd4ee... First Commit

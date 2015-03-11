@@ -43,7 +43,6 @@ config IOSCHED_ROW
 	  according to queue priority.
 	  Most suitable for mobile devices.
 
-<<<<<<< HEAD
 config IOSCHED_FIOPS
 	tristate "IOPS based I/O scheduler"
 	default y
@@ -52,8 +51,6 @@ config IOSCHED_FIOPS
           IOPS equally among all processes in the system. It's mainly for
           Flash based storage.
 
-=======
->>>>>>> f7fd4ee... First Commit
 config IOSCHED_CFQ
 	tristate "CFQ I/O scheduler"
 	default y
@@ -95,12 +92,9 @@ choice
 	config DEFAULT_CFQ
 		bool "CFQ" if IOSCHED_CFQ=y
 
-<<<<<<< HEAD
 	config DEFAULT_FIOPS
 		bool "FIOPS" if IOSCHED_FIOPS=y
 
-=======
->>>>>>> f7fd4ee... First Commit
 	config DEFAULT_NOOP
 		bool "No-op"
 
@@ -111,10 +105,7 @@ config DEFAULT_IOSCHED
 	default "deadline" if DEFAULT_DEADLINE
 	default "row" if DEFAULT_ROW
 	default "cfq" if DEFAULT_CFQ
-<<<<<<< HEAD
 	default "fiops" if DEFAULT_FIOPS
-=======
->>>>>>> f7fd4ee... First Commit
 	default "noop" if DEFAULT_NOOP
 
 endmenu

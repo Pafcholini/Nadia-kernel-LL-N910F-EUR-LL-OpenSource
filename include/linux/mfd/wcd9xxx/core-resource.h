@@ -125,11 +125,8 @@ void wcd9xxx_disable_irq(struct wcd9xxx_core_resource *, int);
 void wcd9xxx_disable_irq_sync(struct wcd9xxx_core_resource *, int);
 int wcd9xxx_reg_read(struct wcd9xxx_core_resource *,
 					 unsigned short);
-<<<<<<< HEAD
 int wcd9xxx_reg_read_safe(struct wcd9xxx_core_resource *,
 					 unsigned short);
-=======
->>>>>>> f7fd4ee... First Commit
 int wcd9xxx_reg_write(struct wcd9xxx_core_resource *,
 					  unsigned short, u8);
 int wcd9xxx_bulk_read(struct wcd9xxx_core_resource *,

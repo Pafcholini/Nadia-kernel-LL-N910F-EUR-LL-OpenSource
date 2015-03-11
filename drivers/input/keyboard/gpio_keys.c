@@ -592,11 +592,7 @@ static void flip_cover_work(struct work_struct *work)
 			__func__, ddata->flip_cover);
 
 		input_report_switch(ddata->input,
-<<<<<<< HEAD
 			SW_LID, !ddata->flip_cover);
-=======
-			SW_FLIP, ddata->flip_cover);
->>>>>>> f7fd4ee... First Commit
 		input_sync(ddata->input);
 	} else {
 		printk(KERN_DEBUG "%s : Value is not same!\n", __func__);
@@ -615,11 +611,7 @@ static void flip_cover_work(struct work_struct *work)
 		__func__, ddata->flip_cover);
 
 	input_report_switch(ddata->input,
-<<<<<<< HEAD
 		SW_LID, !ddata->flip_cover);
-=======
-		SW_FLIP, ddata->flip_cover);
->>>>>>> f7fd4ee... First Commit
 	input_sync(ddata->input);
 }
 #endif // CONFIG_SEC_FACTORY
@@ -705,10 +697,7 @@ static void gpio_keys_close(struct input_dev *input)
 static ssize_t sysfs_hall_detect_show(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {	
-<<<<<<< HEAD
 
-=======
->>>>>>> f7fd4ee... First Commit
 	if (flip_cover)
 		snprintf(buf, 6, "%s\n", "OPEN");
 	else
@@ -974,11 +963,7 @@ static int gpio_keys_probe(struct platform_device *pdev)
 	wake_lock_init(&ddata->flip_wake_lock, WAKE_LOCK_SUSPEND, "flip_wake_lock");
 	if(ddata->gpio_flip_cover != 0) {
 		input->evbit[0] |= BIT_MASK(EV_SW);
-<<<<<<< HEAD
 		input_set_capability(input, EV_SW, SW_LID);
-=======
-		input_set_capability(input, EV_SW, SW_FLIP);
->>>>>>> f7fd4ee... First Commit
 	}
 #endif
 	ddata->pdata = pdata;

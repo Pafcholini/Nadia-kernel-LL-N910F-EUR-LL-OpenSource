@@ -18,12 +18,9 @@
 #include <linux/usb_notify.h>
 #include <linux/battery/charger/max77843_charger.h>
 #include <linux/battery/sec_battery.h>
-<<<<<<< HEAD
 #ifdef CONFIG_FORCE_FAST_CHARGE
 #include <linux/fastchg.h>
 #endif
-=======
->>>>>>> f7fd4ee... First Commit
 
 #define ENABLE 1
 #define DISABLE 0
@@ -838,7 +835,6 @@ static void max77843_charger_function_control(
 		charger->charging_current =
 			charger->pdata->charging_current
 			[charger->cable_type].fast_charging_current;
-<<<<<<< HEAD
 #ifdef CONFIG_FORCE_FAST_CHARGE
         /* Yank555 : Use Fast charge currents accroding to user settings */
         if (force_fast_charge == FAST_CHARGE_FORCE_AC) {/* We are in basic Fast Charge mode, so we substitute AC to USB levels */
@@ -872,8 +868,6 @@ static void max77843_charger_function_control(
             }
         }
 #endif // CONFIG_FORCE_FAST_CHARGE
-=======
->>>>>>> f7fd4ee... First Commit
 #if defined(CONFIG_MUIC_SUPPORT_MULTIMEDIA_DOCK)
 		if (charger->is_mdock) { /* if mdock was already inserted, then check OTG, or NOTG state */
 			if (charger->cable_type == POWER_SUPPLY_TYPE_SMART_NOTG) {
@@ -2100,8 +2094,4 @@ module_exit(max77843_charger_exit);
 
 MODULE_DESCRIPTION("Samsung MAX77843 Charger Driver");
 MODULE_AUTHOR("Samsung Electronics");
-<<<<<<< HEAD
 MODULE_LICENSE("GPL");
-=======
-MODULE_LICENSE("GPL");
->>>>>>> f7fd4ee... First Commit

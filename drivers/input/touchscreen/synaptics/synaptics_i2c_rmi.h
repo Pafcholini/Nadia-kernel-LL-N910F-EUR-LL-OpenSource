@@ -437,11 +437,7 @@
 #endif
 
 
-<<<<<<< HEAD
 extern unsigned int system_rev;
-=======
-extern int system_rev;
->>>>>>> f7fd4ee... First Commit
 
 struct synaptics_rmi4_f01_device_status {
 	union {

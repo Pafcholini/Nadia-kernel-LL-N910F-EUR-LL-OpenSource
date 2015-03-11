@@ -26,7 +26,6 @@
 #define ADDRESS_SCR_WHITE_BLUE  0x9B
 
 ////////////////// UI /// /////////////////////
-<<<<<<< HEAD
 
 #if defined(CONFIG_MDNIE_LITE_CONTROL)
 char LITE_CONTROL_1[] = {
@@ -198,8 +197,6 @@ char LITE_CONTROL_2[] = {
 };
 #endif
 
-=======
->>>>>>> f7fd4ee... First Commit
 static char SCREEN_CURTAIN_1[] = {
 	/* start */
 	0xEB,

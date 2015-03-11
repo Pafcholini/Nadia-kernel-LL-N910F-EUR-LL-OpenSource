@@ -276,10 +276,6 @@ obj-$(CONFIG_SND_SOC_TPA6130A2)	+= snd-soc-tpa6130a2.o
 obj-$(CONFIG_SND_SOC_ES_515)	+= audience/
 obj-$(CONFIG_SND_SOC_ES705)	+= audience/
 #DBMD2
-<<<<<<< HEAD
 obj-$(CONFIG_SND_DSPG_DBMD2)	+= dbmd2/
 
 obj-$(CONFIG_SOUND_CONTROL_HAX_3_GPL) += sound_control_3_gpl.o
-=======
-obj-$(CONFIG_SND_DSPG_DBMD2)	+= dbmd2/
->>>>>>> f7fd4ee... First Commit

@@ -13,7 +13,6 @@
 struct cpufreq_limit_handle;
 
 #ifdef CONFIG_CPU_FREQ_LIMIT
-<<<<<<< HEAD
 
 #define MAX_FREQ_LIMIT	2649600
 #define MIN_FREQ_LIMIT	268000
@@ -21,8 +20,6 @@ struct cpufreq_limit_handle;
 #define SUSPEND_BOOST	1190400
 #endif
 
-=======
->>>>>>> f7fd4ee... First Commit
 struct cpufreq_limit_handle *cpufreq_limit_get(unsigned long min_freq,
 		unsigned long max_freq, char *label);
 int cpufreq_limit_put(struct cpufreq_limit_handle *handle);
@@ -43,11 +40,7 @@ struct cpufreq_limit_handle *cpufreq_limit_max_freq(unsigned long max_freq,
 #else
 static inline
 struct cpufreq_limit_handle *cpufreq_limit_get(unsigned long min_freq,
-<<<<<<< HEAD
 		unsigned long max_freq, char *label)
-=======
-		unsigned long max_freq char *label)
->>>>>>> f7fd4ee... First Commit
 {
 	return NULL;
 }

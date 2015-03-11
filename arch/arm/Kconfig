@@ -156,16 +156,9 @@ config TRACE_IRQFLAGS_SUPPORT
 
 config RWSEM_GENERIC_SPINLOCK
 	bool
-<<<<<<< HEAD
 
 config RWSEM_XCHGADD_ALGORITHM
 	def_bool y
-=======
-	default y
-
-config RWSEM_XCHGADD_ALGORITHM
-	bool
->>>>>>> f7fd4ee... First Commit
 
 config ARCH_HAS_ILOG2_U32
 	bool
@@ -1413,10 +1406,7 @@ config PERFMAP
 endmenu
 
 source "arch/arm/common/Kconfig"
-<<<<<<< HEAD
 source "arch/arm/hotplug/Kconfig"
-=======
->>>>>>> f7fd4ee... First Commit
 
 menu "Bus support"
 
@@ -2334,7 +2324,6 @@ config NEON
 	  Say Y to include support code for NEON, the ARMv7 Advanced SIMD
 	  Extension.
 
-<<<<<<< HEAD
 config KERNEL_MODE_NEON
 	bool "Support for NEON in kernel mode"
 	default n
@@ -2342,8 +2331,6 @@ config KERNEL_MODE_NEON
 	help
 	  Say Y to include support for NEON in kernel mode.
 
-=======
->>>>>>> f7fd4ee... First Commit
 endmenu
 
 menu "Userspace binary formats"

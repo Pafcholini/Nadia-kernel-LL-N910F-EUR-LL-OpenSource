@@ -1152,10 +1152,6 @@ long do_io_submit(aio_context_t ctx_id, long nr,
 	struct kioctx *ctx;
 	long ret = 0;
 	int i = 0;
-<<<<<<< HEAD
-=======
-	struct blk_plug plug;
->>>>>>> f7fd4ee... First Commit
 
 	if (unlikely(nr < 0))
 		return -EINVAL;
@@ -1172,10 +1168,6 @@ long do_io_submit(aio_context_t ctx_id, long nr,
 		return -EINVAL;
 	}
 
-<<<<<<< HEAD
-=======
-	blk_start_plug(&plug);
->>>>>>> f7fd4ee... First Commit
 
 	/*
 	 * AKPM: should this return a partial result if some of the IOs were
@@ -1199,10 +1191,6 @@ long do_io_submit(aio_context_t ctx_id, long nr,
 		if (ret)
 			break;
 	}
-<<<<<<< HEAD
-=======
-	blk_finish_plug(&plug);
->>>>>>> f7fd4ee... First Commit
 
 	put_ioctx(ctx);
 	return i ? i : ret;

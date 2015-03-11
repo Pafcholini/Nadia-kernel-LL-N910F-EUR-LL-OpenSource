@@ -545,7 +545,6 @@ DECLARE_PER_CPU(struct rq, runqueues);
 #define cpu_curr(cpu)		(cpu_rq(cpu)->curr)
 #define raw_rq()		(&__raw_get_cpu_var(runqueues))
 
-<<<<<<< HEAD
 #ifdef CONFIG_INTELLI_PLUG
 struct nr_stats_s {
 	/* time-based average load */
@@ -567,8 +566,6 @@ struct nr_stats_s {
 DECLARE_PER_CPU(struct nr_stats_s, runqueue_stats);
 #endif
 
-=======
->>>>>>> f7fd4ee... First Commit
 #ifdef CONFIG_SMP
 
 #define rcu_dereference_check_sched_domain(p) \
@@ -1128,7 +1125,6 @@ static inline u64 steal_ticks(u64 steal)
 }
 #endif
 
-<<<<<<< HEAD
 #ifdef CONFIG_INTELLI_PLUG
 static inline unsigned int do_avg_nr_running(struct rq *rq)
 {
@@ -1165,12 +1161,6 @@ static inline void inc_nr_running(struct rq *rq)
 #ifdef CONFIG_INTELLI_PLUG
 	write_seqcount_end(&nr_stats->ave_seqcnt);
 #endif
-=======
-static inline void inc_nr_running(struct rq *rq)
-{
-	sched_update_nr_prod(cpu_of(rq), rq->nr_running, true);
-	rq->nr_running++;
->>>>>>> f7fd4ee... First Commit
 
 #ifdef CONFIG_NO_HZ_FULL
 	if (rq->nr_running == 2) {
@@ -1185,7 +1175,6 @@ static inline void inc_nr_running(struct rq *rq)
 
 static inline void dec_nr_running(struct rq *rq)
 {
-<<<<<<< HEAD
 #ifdef CONFIG_INTELLI_PLUG
 	struct nr_stats_s *nr_stats = &per_cpu(runqueue_stats, rq->cpu);
 #endif
@@ -1200,10 +1189,6 @@ static inline void dec_nr_running(struct rq *rq)
 #ifdef CONFIG_INTELLI_PLUG
 	write_seqcount_end(&nr_stats->ave_seqcnt);
 #endif
-=======
-	sched_update_nr_prod(cpu_of(rq), rq->nr_running, false);
-	rq->nr_running--;
->>>>>>> f7fd4ee... First Commit
 }
 
 static inline void rq_last_tick_reset(struct rq *rq)

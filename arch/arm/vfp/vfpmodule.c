@@ -22,10 +22,7 @@
 #include <linux/user.h>
 #include <linux/proc_fs.h>
 #include <linux/seq_file.h>
-<<<<<<< HEAD
 #include <linux/export.h>
-=======
->>>>>>> f7fd4ee... First Commit
 
 #include <asm/cp15.h>
 #include <asm/cputype.h>
@@ -681,7 +678,6 @@ static const struct file_operations vfp_bounce_fops = {
 };
 #endif
 
-<<<<<<< HEAD
 #ifdef CONFIG_KERNEL_MODE_NEON
 
 /*
@@ -728,8 +724,6 @@ EXPORT_SYMBOL(kernel_neon_end);
 
 #endif /* CONFIG_KERNEL_MODE_NEON */
 
-=======
->>>>>>> f7fd4ee... First Commit
 /*
  * VFP support code initialisation.
  */
@@ -824,8 +818,4 @@ static int __init vfp_init(void)
 	return 0;
 }
 
-<<<<<<< HEAD
 core_initcall(vfp_init);
-=======
-late_initcall(vfp_init);
->>>>>>> f7fd4ee... First Commit

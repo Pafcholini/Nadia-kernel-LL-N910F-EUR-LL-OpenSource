@@ -22,12 +22,9 @@
 #include <linux/regulator/rpm-smd-regulator.h>
 #include <linux/of.h>
 #include <linux/cpumask.h>
-<<<<<<< HEAD
 #ifdef CONFIG_CPU_VOLTAGE_CONTROL
 #include <linux/cpufreq.h>
 #endif
-=======
->>>>>>> f7fd4ee... First Commit
 #include <linux/clk/msm-clk-provider.h>
 #include <linux/clk/msm-clk.h>
 #include <linux/clk/msm-clock-generic.h>
@@ -708,7 +705,6 @@ static void krait_update_uv(int *uv, int num, int boost_uv)
 	}
 }
 
-<<<<<<< HEAD
 #ifdef CONFIG_CPU_VOLTAGE_CONTROL
 
 #define CPU_VDD_MIN	 600
@@ -781,8 +777,6 @@ ssize_t store_UV_mV_table(struct cpufreq_policy *policy, char *buf,
 }
 #endif
 
-=======
->>>>>>> f7fd4ee... First Commit
 static char table_name[] = "qcom,speedXX-pvsXX-bin-vXX";
 module_param_string(table_name, table_name, sizeof(table_name), S_IRUGO);
 static unsigned int pvs_config_ver;

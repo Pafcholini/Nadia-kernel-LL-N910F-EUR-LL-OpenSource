@@ -45,11 +45,7 @@
 /* for lpm mode check */
 extern int poweroff_charging;
 
-<<<<<<< HEAD
 extern unsigned int system_rev;
-=======
-extern int system_rev;
->>>>>>> f7fd4ee... First Commit
 
 extern struct otg_notify *get_otg_notify(void);
 

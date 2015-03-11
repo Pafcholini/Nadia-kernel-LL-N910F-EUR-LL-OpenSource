@@ -318,22 +318,16 @@ int device_init_wakeup(struct device *dev, bool enable)
 {
 	int ret = 0;
 
-<<<<<<< HEAD
 	if (!dev)
 		return -EINVAL;
 
-=======
->>>>>>> f7fd4ee... First Commit
 	if (enable) {
 		device_set_wakeup_capable(dev, true);
 		ret = device_wakeup_enable(dev);
 	} else {
-<<<<<<< HEAD
 		if (dev->power.can_wakeup)
 			device_wakeup_disable(dev);
 
-=======
->>>>>>> f7fd4ee... First Commit
 		device_set_wakeup_capable(dev, false);
 	}
 

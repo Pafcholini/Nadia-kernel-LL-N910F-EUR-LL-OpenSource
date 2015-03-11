@@ -109,13 +109,7 @@ void kgsl_pwrscale_update_stats(struct kgsl_device *device)
 	if (device->state == KGSL_STATE_ACTIVE) {
 		struct kgsl_power_stats stats;
 		device->ftbl->power_stats(device, &stats);
-<<<<<<< HEAD
 		device->pwrscale.accum_stats.busy_time += stats.busy_time;		
-=======
-		device->pwrscale.accum_stats.busy_time += stats.busy_time;
-		device->pwrscale.accum_stats.ram_time += stats.ram_time;
-		device->pwrscale.accum_stats.ram_wait += stats.ram_wait;
->>>>>>> f7fd4ee... First Commit
 	}
 }
 EXPORT_SYMBOL(kgsl_pwrscale_update_stats);
@@ -303,10 +297,7 @@ int kgsl_devfreq_get_dev_status(struct device *dev,
 		return -EINVAL;
 
 	pwrscale = &device->pwrscale;
-<<<<<<< HEAD
 	memset(stat, 0, sizeof(*stat));
-=======
->>>>>>> f7fd4ee... First Commit
 
 	kgsl_mutex_lock(&device->mutex, &device->mutex_owner);
 	/*
@@ -324,16 +315,6 @@ int kgsl_devfreq_get_dev_status(struct device *dev,
 
 	stat->current_frequency = kgsl_pwrctrl_active_freq(&device->pwrctrl);
 
-<<<<<<< HEAD
-=======
-	if (stat->private_data) {
-		struct xstats *b = (struct xstats *)stat->private_data;
-		b->ram_time = device->pwrscale.accum_stats.ram_time;
-		b->ram_wait = device->pwrscale.accum_stats.ram_wait;
-		b->mod = device->pwrctrl.bus_mod;
-	}
-
->>>>>>> f7fd4ee... First Commit
 	trace_kgsl_pwrstats(device, stat->total_time, &pwrscale->accum_stats);
 	memset(&pwrscale->accum_stats, 0, sizeof(pwrscale->accum_stats));
 

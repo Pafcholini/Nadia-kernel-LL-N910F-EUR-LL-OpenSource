@@ -17,11 +17,7 @@
 #undef TRACE_SYSTEM
 #define TRACE_SYSTEM mdss
 #undef TRACE_INCLUDE_PATH
-<<<<<<< HEAD
 #define TRACE_INCLUDE_PATH ../../drivers/video/msm/mdss
-=======
-#define TRACE_INCLUDE_PATH .
->>>>>>> f7fd4ee... First Commit
 #undef TRACE_INCLUDE_FILE
 #define TRACE_INCLUDE_FILE mdss_mdp_trace
 

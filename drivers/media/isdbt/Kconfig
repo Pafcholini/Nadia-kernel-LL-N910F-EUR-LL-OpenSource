@@ -5,11 +5,7 @@ config ISDBT
 choice
 	depends on ISDBT
 	prompt "isdbt driver"
-<<<<<<< HEAD
 	default ISDBT_FC8300
-=======
-	default ISDBT_FC8150
->>>>>>> f7fd4ee... First Commit
 
 	config ISDBT_FC8150
 		bool "ISDBT_FC8150"
@@ -30,8 +26,4 @@ config ISDBT_SPMI
 
 config ISDBT_ANT_DET
 	bool "isdbt antenna detection"
-<<<<<<< HEAD
 	default n
-=======
-	default n
->>>>>>> f7fd4ee... First Commit

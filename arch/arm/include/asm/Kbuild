@@ -24,10 +24,7 @@ generic-y += sembuf.h
 generic-y += serial.h
 generic-y += shmbuf.h
 generic-y += siginfo.h
-<<<<<<< HEAD
 generic-y += simd.h
-=======
->>>>>>> f7fd4ee... First Commit
 generic-y += sizes.h
 generic-y += socket.h
 generic-y += sockios.h

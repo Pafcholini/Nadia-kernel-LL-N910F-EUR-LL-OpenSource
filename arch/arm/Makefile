@@ -102,10 +102,7 @@ tune-$(CONFIG_CPU_XSC3)		:=$(call cc-option,-mtune=xscale,-mtune=strongarm110) -
 tune-$(CONFIG_CPU_FEROCEON)	:=$(call cc-option,-mtune=marvell-f,-mtune=xscale)
 tune-$(CONFIG_CPU_V6)		:=$(call cc-option,-mtune=arm1136j-s,-mtune=strongarm)
 tune-$(CONFIG_CPU_V6K)		:=$(call cc-option,-mtune=arm1136j-s,-mtune=strongarm)
-<<<<<<< HEAD
 tune-$(CONFIG_ARCH_MSM_KRAIT)   :=-mtune=cortex-a15
-=======
->>>>>>> f7fd4ee... First Commit
 
 ifeq ($(CONFIG_AEABI),y)
 CFLAGS_ABI	:=-mabi=aapcs-linux -mno-thumb-interwork
@@ -269,10 +266,7 @@ core-y				+= arch/arm/kernel/ arch/arm/mm/ arch/arm/common/
 core-y				+= arch/arm/net/
 core-y				+= arch/arm/crypto/
 core-y				+= $(machdirs) $(platdirs)
-<<<<<<< HEAD
 core-$(CONFIG_INTELLI_PLUG) 	+= arch/arm/hotplug/
-=======
->>>>>>> f7fd4ee... First Commit
 
 drivers-$(CONFIG_OPROFILE)      += arch/arm/oprofile/
 

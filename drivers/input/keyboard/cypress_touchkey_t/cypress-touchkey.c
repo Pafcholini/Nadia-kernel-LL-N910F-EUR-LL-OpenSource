@@ -564,13 +564,10 @@ static irqreturn_t cypress_touchkey_interrupt(int irq, void *dev_id)
 	int ret;
 	int i;
 
-<<<<<<< HEAD
 	if (!atomic_read(&info->keypad_enable)) {
 			goto out;
 	}
 
-=======
->>>>>>> f7fd4ee... First Commit
 	ret = gpio_get_value(info->pdata->gpio_int);
 	if (ret) {
 		dev_info(&info->client->dev,
@@ -1395,7 +1392,6 @@ static ssize_t cypress_touchkey_read_register(struct device *dev,
 	return size;
 }
 
-<<<<<<< HEAD
 static ssize_t sec_keypad_enable_show(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
@@ -1428,8 +1424,6 @@ static ssize_t sec_keypad_enable_store(struct device *dev,
 
 static DEVICE_ATTR(keypad_enable, S_IRUGO|S_IWUSR, sec_keypad_enable_show,
 	      sec_keypad_enable_store);
-=======
->>>>>>> f7fd4ee... First Commit
 static DEVICE_ATTR(touchkey_firm_update_status, S_IRUGO | S_IWUSR | S_IWGRP,
 		cypress_touchkey_firm_status_show, NULL);
 static DEVICE_ATTR(touchkey_firm_version_panel, S_IRUGO,
@@ -1498,10 +1492,7 @@ static DEVICE_ATTR(read_reg, S_IRUGO | S_IWUSR | S_IWGRP, NULL,
 		cypress_touchkey_read_register);
 
 static struct attribute *touchkey_attributes[] = {
-<<<<<<< HEAD
 	&dev_attr_keypad_enable.attr,
-=======
->>>>>>> f7fd4ee... First Commit
 	&dev_attr_touchkey_firm_update_status.attr,
 	&dev_attr_touchkey_firm_version_panel.attr,
 	&dev_attr_touchkey_firm_version_phone.attr,
@@ -1952,11 +1943,8 @@ static int cypress_touchkey_probe(struct i2c_client *client,
 	set_bit(EV_LED, input_dev->evbit);
 	set_bit(LED_MISC, input_dev->ledbit);
 
-<<<<<<< HEAD
 	atomic_set(&info->keypad_enable, 1);
 
-=======
->>>>>>> f7fd4ee... First Commit
 	wake_lock_init(&info->fw_wakelock, WAKE_LOCK_SUSPEND, "cypress_touchkey");
 
 	for (i = 0; i < pdata->keycodes_size; i++) {

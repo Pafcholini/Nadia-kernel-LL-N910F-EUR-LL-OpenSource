@@ -36,11 +36,7 @@
 
 /*
  * Targeted preemption latency for CPU-bound tasks:
-<<<<<<< HEAD
  * (default: 5ms * (1 + ilog(ncpus)), units: nanoseconds)
-=======
- * (default: 6ms * (1 + ilog(ncpus)), units: nanoseconds)
->>>>>>> f7fd4ee... First Commit
  *
  * NOTE: this latency value is not the same as the concept of
  * 'timeslice length' - timeslices in CFS are of variable length
@@ -50,13 +46,8 @@
  * (to see the precise effective timeslice length of your workload,
  *  run vmstat and monitor the context-switches (cs) field)
  */
-<<<<<<< HEAD
 unsigned int sysctl_sched_latency = 5000000ULL;
 unsigned int normalized_sysctl_sched_latency = 5000000ULL;
-=======
-unsigned int sysctl_sched_latency = 6000000ULL;
-unsigned int normalized_sysctl_sched_latency = 6000000ULL;
->>>>>>> f7fd4ee... First Commit
 
 /*
  * The initial- and re-scaling of tunables is configurable
@@ -1730,15 +1721,12 @@ static void check_spread(struct cfs_rq *cfs_rq, struct sched_entity *se)
 #endif
 }
 
-<<<<<<< HEAD
 static unsigned int Lgentle_fair_sleepers = 0;
 void relay_gfs(unsigned int gfs)
 {
 	Lgentle_fair_sleepers = gfs;
 }
 
-=======
->>>>>>> f7fd4ee... First Commit
 static void
 place_entity(struct cfs_rq *cfs_rq, struct sched_entity *se, int initial)
 {
@@ -1761,11 +1749,7 @@ place_entity(struct cfs_rq *cfs_rq, struct sched_entity *se, int initial)
 		 * Halve their sleep time's effect, to allow
 		 * for a gentler effect of sleepers:
 		 */
-<<<<<<< HEAD
 		if (Lgentle_fair_sleepers)
-=======
-		if (sched_feat(GENTLE_FAIR_SLEEPERS))
->>>>>>> f7fd4ee... First Commit
 			thresh >>= 1;
 
 		vruntime -= thresh;
@@ -3059,7 +3043,6 @@ static unsigned long cpu_avg_load_per_task(int cpu)
 	return 0;
 }
 
-<<<<<<< HEAD
 static void record_wakee(struct task_struct *p)
 {
 	/*
@@ -3077,8 +3060,6 @@ static void record_wakee(struct task_struct *p)
 		current->wakee_flips++;
 	}
 }
-=======
->>>>>>> f7fd4ee... First Commit
 
 static void task_waking_fair(struct task_struct *p)
 {
@@ -3099,10 +3080,7 @@ static void task_waking_fair(struct task_struct *p)
 #endif
 
 	se->vruntime -= min_vruntime;
-<<<<<<< HEAD
 	record_wakee(p);
-=======
->>>>>>> f7fd4ee... First Commit
 }
 
 #ifdef CONFIG_FAIR_GROUP_SCHED
@@ -3221,7 +3199,6 @@ static inline unsigned long effective_load(struct task_group *tg, int cpu,
 
 #endif
 
-<<<<<<< HEAD
 static int wake_wide(struct task_struct *p)
 {
 	int factor = nr_cpus_node(cpu_to_node(smp_processor_id()));
@@ -3244,8 +3221,6 @@ static int wake_wide(struct task_struct *p)
 	return 0;
 }
 
-=======
->>>>>>> f7fd4ee... First Commit
 static int wake_affine(struct sched_domain *sd, struct task_struct *p, int sync)
 {
 	s64 this_load, load;
@@ -3255,7 +3230,6 @@ static int wake_affine(struct sched_domain *sd, struct task_struct *p, int sync)
 	unsigned long weight;
 	int balanced;
 
-<<<<<<< HEAD
 	/*
 	 * If we wake multiple tasks be careful to not bounce
 	 * ourselves around too much.
@@ -3263,8 +3237,6 @@ static int wake_affine(struct sched_domain *sd, struct task_struct *p, int sync)
 	if (wake_wide(p))
 		return 0;
 
-=======
->>>>>>> f7fd4ee... First Commit
 	idx	  = sd->wake_idx;
 	this_cpu  = smp_processor_id();
 	prev_cpu  = task_cpu(p);

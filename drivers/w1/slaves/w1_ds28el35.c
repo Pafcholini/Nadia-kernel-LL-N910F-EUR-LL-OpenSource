@@ -148,15 +148,11 @@ static unsigned short slave_crc16;
 static int ecdsa_debug = 1;
 static int total_run=0, fail_run=0;
 
-<<<<<<< HEAD
 #ifdef CONFIG_SVIEW_AUTHENTICATION
 int verification = -1, id = 2, color, model, detect, user = 0;	// for samsung
 #else
 int verification = 0, id = 1, color, model = 2, detect, user = 1;
 #endif
-=======
-int verification = -1, id = 2, color, model, detect;	// for samsung
->>>>>>> f7fd4ee... First Commit
 #ifdef CONFIG_W1_SN
 char g_sn[14];
 #endif
